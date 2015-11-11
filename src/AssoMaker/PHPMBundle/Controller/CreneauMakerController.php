@@ -112,6 +112,7 @@ class CreneauMakerController extends Controller
     	}
 
     	$em->flush();
+    
     	return $this->redirect($this->generateUrl('creneaumaker_tache', array('id' => $entity->getTache()->getId())));
     }
     

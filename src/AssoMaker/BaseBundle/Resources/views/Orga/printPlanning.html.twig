@@ -9,7 +9,7 @@
 
     @page :first {
         @top-center {
-            content: "Planning 24 heures de l'INSA"
+            content: "Planning Gala XIX"
         }
     }
 
@@ -120,7 +120,8 @@ float:right;
 </style>
 <div class="row-fluid " >
     <div style="min-height:60px; margin-bottom:10px;">
-        <img src="https://raw.githubusercontent.com/24HeuresINSA/logos-24heures/master/logo-24heures.png" style="float: left;margin-bottom: 1cm;height:50px">
+        <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/Gala_Noir.png" style="float: left;margin-bottom: 1cm">
+        <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/Logo%20BdE%20noir.png" style="float: right; height:50px;">
         <div style="width:300pt; margin: 10px auto; text-align: center;"><h1>{{ entitiesMacro.orga(orga) }}</h1></div>
     </div>
     <div class="" style="clear: both">
@@ -128,7 +129,7 @@ float:right;
         <div style="padding:0.2cm; width:15cm;margin:20px auto 0px auto;border: dotted 2px #000000">
             <img src="http://cdns2.freepik.com/free-photo/information_318-10929.jpg" width="50px" style="float: left;margin:0 0.2cm">
             <div class="important"> Attention ! Tu es responsable d'au moins une tâche. Tu trouveras à la fin de ton planning la liste des tâches que tu dois cheffer.<br>
-            Pour éviter que tu ne les confondes avec ton planning, ces cases sont <b>grisées</b>.</div>
+            Pour éviter que tu ne confondes avec ton planning, ces cases sont <b>grisées</b>.</div>
         </div>
     {% endif %}
         {% if phpm_planning_message != "" %}
@@ -140,25 +141,15 @@ float:right;
         <div class="block">
             <div class="block-title" style="padding: 5px">SOS</div>
             <div class="block-content important">
-                PC Sécurité : 04 72 43 70 70 (ou 04 72 43 60 00 si la première ligne ne répond pas)<br />
-                QG Orga : 04 72 43 70 00 (à utiliser en priorité !)<br />
-                Si pas de réponse : <br />
-                - Alice Montel, Resp. Orga : 06 79 27 29 50<br/>
-                - Marie Bonichon, Resp. Orga : 06 61 23 21 55
+                Sébastien, Resp. Orga : 06.31.26.19.96<br/>
+                Jérémy, Resp. Sécu : 06.10.09.10.49
             </div>
         </div>
 
         <div class="block" id="map">
-            <div class="block-title" style="padding: 5px">Plan de la zone</div>
+            <div class="block-title" style="padding: 5px">Plan du Palais</div>
             <div class="block-content">
-                <img src="https://raw.githubusercontent.com/24HeuresINSA/logos-24heures/master/plan-zone.jpg" width="100%">
-            </div>
-        </div>
-
-        <div class="block">
-            <div class="block-title" style="padding: 5px">Plan des PS (Points Sécu)</div>
-            <div class="block-content">
-                <img src="https://raw.githubusercontent.com/24HeuresINSA/logos-24heures/master/plan-ps.jpg" width="100%">
+                <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/plans_gala/plan_simplifie_noirblanc.png" width="100%">
             </div>
         </div>
 
@@ -172,9 +163,9 @@ float:right;
                     <div class="right">Où ? {{ creneau.plageHoraire.tache.lieu }}</div>
                 </div>
                 <div class="block-content">
-                    <span class="important"><b>Quand ?</b> {{ creneau.debut | format_datetime('EEEE dd MMMM') }} de {{ creneau.debut | format_datetime('HH:mm') }}&nbsp;à&nbsp;{%  if (creneau.debut | format_datetime('dd'))==(creneau.fin | format_datetime('dd')) %}{{ creneau.fin | format_datetime('HH:mm') }}
+                    <span class="important"><b>Quand ?</b> {{ creneau.debut | format_datetime('EEEE') }} de {{ creneau.debut | format_datetime('HH:mm') }}&nbsp;à&nbsp;{%  if (creneau.debut | format_datetime('dd'))==(creneau.fin | format_datetime('dd')) %}{{ creneau.fin | format_datetime('HH:mm') }}
                     {% else %}
-                        {{ creneau.fin | format_datetime('EEEE dd MMMM HH:mm') }}
+                        {{ creneau.fin | format_datetime('EEEE HH:mm') }}
                     {% endif %}<br>
                     <b>Responsable :</b> {{ entitiesMacro.orga(creneau.plageHoraire.tache.responsable) }}</span>
                     {{ creneau.plageHoraire.tache.responsable.telephone }}<br>
@@ -214,9 +205,9 @@ float:right;
                     <li><b>Créneaux : </b>
                         <ul>
                             {% for creneau in tache.creneaux %}
-                                <li>{{ creneau.nom }} {{ creneau.prenom }} ({{ creneau.telephone }}) - {{ creneau.debut | format_datetime('EEEE dd MMMM') }} de {{ creneau.debut | format_datetime('HH:mm') }}&nbsp;à&nbsp;{%  if (creneau.debut | format_datetime('dd'))==(creneau.fin | format_datetime('dd')) %}{{ creneau.fin | format_datetime('HH:mm') }}
+                                <li>{{ creneau.nom }} {{ creneau.prenom }} ({{ creneau.telephone }}) - {{ creneau.debut | format_datetime('EEEE') }} de {{ creneau.debut | format_datetime('HH:mm') }}&nbsp;à&nbsp;{%  if (creneau.debut | format_datetime('dd'))==(creneau.fin | format_datetime('dd')) %}{{ creneau.fin | format_datetime('HH:mm') }}
                                     {% else %}
-                                        {{ creneau.fin | format_datetime('EEEE dd MMMM HH:mm') }}
+                                        {{ creneau.fin | format_datetime('EEEE HH:mm') }}
                                     {% endif %}</li>
                             {% endfor %}
                         </ul>

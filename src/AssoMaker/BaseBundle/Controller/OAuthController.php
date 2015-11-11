@@ -52,6 +52,7 @@ class OAuthController extends Controller {
             return $this->redirect($this->generateUrl("base_accueil"));
     }
 
+
     /**
      * @Route("/register", name="register_oauth")
      * Cette action vérifie que l'utilisateur a remplis son inscription et que le compte est actif.
@@ -207,6 +208,18 @@ class OAuthController extends Controller {
         $em->persist($token);
         $em->flush();
         return $this->render($token->getToken());
+    }
+
+    /**
+     * @param $entityManager
+     * @param $user
+     */
+    private function refuseRegistration($entityManager, $user)
+    {
+        $entityManager->remove($user);
+        $entityManager->flush();
+        $this->securityContext->setToken(null);
+        return $this->redirect($this->generateUrl('base_publichome'));
     }
 
 } 

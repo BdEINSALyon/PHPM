@@ -172,9 +172,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function showAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AssoMakerBaseBundle:Equipe')->find($id);
@@ -198,9 +195,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function newAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
         $entity = new Equipe();
         $form   = $this->createForm(new EquipeType(), $entity);
 
@@ -219,9 +213,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function createAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
         $entity  = new Equipe();
         $request = $this->getRequest();
         $form    = $this->createForm(new EquipeType(), $entity);
@@ -250,10 +241,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function editAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
-
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AssoMakerBaseBundle:Equipe')->find($id);
@@ -281,10 +268,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function updateAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
-
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AssoMakerBaseBundle:Equipe')->find($id);
@@ -322,9 +305,6 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function deleteAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_HUMAIN')) {
-            throw new AccessDeniedException();
-        }
         
         $request = $this->getRequest();
 

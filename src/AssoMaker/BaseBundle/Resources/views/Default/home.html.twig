@@ -190,7 +190,7 @@
                 </div>
             {% endif %}
 
-            {% if is_granted('ROLE_ORGA') %}
+            {% if is_granted('ROLE_USER') %}
                 {% if (planning[0] is defined) %}
                     <div class="row-fluid">
 
@@ -222,7 +222,7 @@
                                       href="{{ path('orga_inputdispos',{'id':app.user.id }) }}"><i
                                                 class="icon-calendar"></i> Renseigner mes disponibilités »</a></p>
                             {% endif %}
-                            {% if (planning[0] is defined) and is_granted('ROLE_ORGA') %}
+                            {% if (planning[0] is defined) %}
                                 <p>
                                     <a class="btn btn-large btn-block"
                                        href="{{ path('orga_print', {'orgaid':app.user.id }) }}"><i class="icon-print"></i>
@@ -242,7 +242,7 @@
 
         </div>
         <div class="span4">
-            {% if is_granted('ROLE_HARD') and phpm_actif %}
+            {% if is_granted('ROLE_USER') and phpm_actif %}
                 <h2>Fiches Tâches</h2>
                 {% if (statsOrga.taches.orga[0] + statsOrga.taches.equipe[0]) > 0 %}
                     <div class="alert alert-block alert-error fade in">
@@ -280,7 +280,6 @@
                         <td>{{ statsOrga.taches.orga[2] }}</td>
                         <td>{{ statsOrga.taches.equipe[2] }}</td>
                     </tr>
-
                     </tbody>
                 </table>
 

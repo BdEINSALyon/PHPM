@@ -30,7 +30,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Spraed\PDFGeneratorBundle\SpraedPDFGeneratorBundle(),
-            new Endroid\Bundle\GcmBundle\EndroidGcmBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
