@@ -7,7 +7,6 @@ use AssoMaker\BaseBundle\Entity\OrgaRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints\Image;
 
 class AnimationType extends AbstractType {
 
@@ -35,14 +34,12 @@ class AnimationType extends AbstractType {
                     'label' => 'Responsable',
                     'class' => 'AssoMakerBaseBundle:Orga',
                     'disabled' => $this->disabled['h'],
-                    'property' => 'fullName',
                     'query_builder' => function(OrgaRepository $or)use($minConfianceResp) {
                         return $or->findAllWithConfianceValueMin($minConfianceResp);
                     }))
                 ->add('orgaManif', 'entity', array(
                     'label' => 'Orga sur la manif',
                     'class' => 'AssoMakerBaseBundle:Orga',
-                    'property' => 'fullName',
                     'query_builder' => function(OrgaRepository $or)use($minConfianceResp) {
                         return $or->findAllWithConfianceValueMin($minConfianceResp);
                     }, 'disabled' => $this->disabled['h']))
@@ -66,12 +63,7 @@ class AnimationType extends AbstractType {
                     ->add('locX', 'hidden', array('disabled' => $this->disabled['h']))
                     ->add('locY', 'hidden', array('disabled' => $this->disabled['h']))
                     ->add('public', null, array('label' => 'Publier sur le site / plaquette', 'disabled' => $this->disabled['h']))
-                    ->add('mobile', null, array('label' => 'Publier sur l\'appli mobile'))
                     ->add('description', null, array('label' => 'Description de l\'animation', 'disabled' => $this->disabled['h']))
-                    ->add('descriptionMobile', null, array('label' => 'Description pour appli mobile', 'attr' => array('placeholder' => 'Description de quelques lignes.')))
-                    ->add('categorieMobile', 'entity', array(
-                        'label' => 'Catégorie mobile',
-                        'class' => 'AssoMakerAnimBundle:CategorieMobile'))
                     ->add('pubPicture', null, array('label' => 'Image à mettre sur le site', 'disabled' => $this->disabled['h']))
                     ->add('animPhare', null, array('label' => 'Anim Phare', 'disabled' => $this->disabled['h']))
                     ->add('animGosses', null, array('label' => 'Anim pour les gosses', 'disabled' => $this->disabled['h']))
@@ -87,17 +79,6 @@ class AnimationType extends AbstractType {
                     ->add('materiel', 'hidden', array('disabled' => $this->disabled['l']))
                     ->add('lieuDepotLog', 'choice', array('label' => 'Lieu de dépôt du matériel', 'choices' => Animation::$lieuxDepotLog, 'required' => false, 'disabled' => !$this->log))
             ;
-            $builder->add('photoMob', 'file', array(
-                'label' => 'Ajouter une photo : ',
-                'constraints' => array(
-                    new Image(array(
-                        'mimeTypes' => array('image/jpeg', 'image/png'),
-                        'maxSize' => '1M',
-                        'allowPortrait' => false)
-                    )
-                ),
-                'required' => false
-            ));
             $builder->add('commentaire', 'textarea', array('label' => 'Ajouter un commentaire', 'required' => false));
         }
     }

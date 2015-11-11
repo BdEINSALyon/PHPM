@@ -4,13 +4,10 @@ namespace AssoMaker\AnimBundle\Controller;
 
 use AssoMaker\AnimBundle\Form\AnimationType;
 use AssoMaker\AnimBundle\Entity\Animation;
-use AssoMaker\AnimBundle\Entity\PhotoAnimation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Csrf\CsrfToken;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  *
@@ -25,7 +22,7 @@ class AnimationController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $config = $e = $this->get('config.extension');
         $user = $this->get('security.context')->getToken()->getUser();
 
@@ -40,7 +37,7 @@ class AnimationController extends Controller {
      * @Template()
      */
     public function brochureAction() {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $config = $e = $this->get('config.extension');
         $user = $this->get('security.context')->getToken()->getUser();
 
@@ -54,7 +51,7 @@ class AnimationController extends Controller {
      * @Template()
      */
     public function mapAction() {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $config = $e = $this->get('config.extension');
         $user = $this->get('security.context')->getToken()->getUser();
 
@@ -68,7 +65,7 @@ class AnimationController extends Controller {
      * @Route("/animations.json", name="anim_animation_index_json")
      */
     public function indexJsonAction() {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $config = $this->get('config.extension');
         $user = $this->get('security.context')->getToken()->getUser();
@@ -88,7 +85,6 @@ class AnimationController extends Controller {
             $animArray['gosses'] = $animation->getAnimGosses();
             $animArray['phare'] = $animation->getAnimPhare();
             $animArray['description'] = $animation->getDescription();
-            $animArray['pictureExtension'] = $animation->getPictureExtension();
 
 
             $animationsArray[$animation->getType()][] = $animArray;
@@ -107,7 +103,7 @@ class AnimationController extends Controller {
      * @Template
      */
     public function newAction() {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $config = $e = $this->get('config.extension');
         $user = $this->get('security.context')->getToken()->getUser();
         $admin = $this->get('security.context')->isGranted('ROLE_HUMAIN');
@@ -140,7 +136,7 @@ class AnimationController extends Controller {
      * @Template
      */
     public function editAction($id) {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $config = $e = $this->get('config.extension');
         $entity = $em->getRepository('AssoMakerAnimBundle:Animation')->find($id);
         $user = $this->get('security.context')->getToken()->getUser();
@@ -180,6 +176,7 @@ class AnimationController extends Controller {
 
                 $entity->uploadPubPicture();
                 $data = $editForm->getData();
+
                 $typeCommentaire = 0;
 
 
@@ -255,15 +252,6 @@ class AnimationController extends Controller {
                     $entity->addCommentaire($user, $data['commentaire'], $typeCommentaire);
                 }
 
-                if ($editForm['photoMob']->getData())
-                {
-                    $photoData = $editForm['photoMob']->getData();
-                    $photoMob = new PhotoAnimation();
-                    $photoMob->setAnimation($entity);
-                    $photoMob->setNom(microtime() . '-' . $photoData->getClientOriginalName());
-                    $photoData->move($this->get('kernel')->getRootDir() . '/../web/up/animPicturesMobile', $photoMob->getNom());
-                    $em->persist($photoMob);
-                }
 
                 $em->persist($entity);
                 $em->flush();
@@ -290,37 +278,4 @@ class AnimationController extends Controller {
         );
     }
 
-    /**
-     *
-     * @Route("/deletePhotoMobile/{id}/{token}", name="anim_animation_delete_photo_mobile")
-     * @Template
-     */
-    public function deletePhotoMobileAction($id, $token)
-    {
-
-        if (!$this->get('security.csrf.token_manager')->isTokenValid(new CsrfToken('anim_animation_delete_photo_mobile', $token)))
-        {
-            throw new AccessDeniedException();
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $config = $e = $this->get('config.extension');
-        $entity = $em->getRepository('AssoMakerAnimBundle:PhotoAnimation')->find($id);
-        $user = $this->get('security.context')->getToken()->getUser();
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
-        $humain = $this->get('security.context')->isGranted('ROLE_HUMAIN');
-
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find PhotoAnimation entity.');
-        }
-
-        $idAnim = $entity->getAnimation()->getId();
-        unlink($this->get('kernel')->getRootDir() . '/../web/up/animPicturesMobile/' . $entity->getNom());
-        $em->remove($entity);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('anim_animation_edit', array('id' => $idAnim)));
-
-    }
 }

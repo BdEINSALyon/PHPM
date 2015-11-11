@@ -18,7 +18,7 @@ class SearchController extends Controller {
      * @Method("post")
      */
     public function searchAction() {
-        if (false === $this->get('security.context')->isGranted('ROLE_HARD')) {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
 
@@ -42,7 +42,7 @@ class SearchController extends Controller {
      * @Method("post")
      */
     public function searchJsonAction() {
-        if (false === $this->get('security.context')->isGranted('ROLE_HARD')) {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
         $request = $this->getRequest();

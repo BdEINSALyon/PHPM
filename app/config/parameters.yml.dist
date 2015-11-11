@@ -16,7 +16,3 @@ parameters:
     node_paths:
          - /usr/local/lib/node_modules
     
-    oauth.google.id: ""
-    oauth.google.secret: ""
-
-    android.api.key: ""
