@@ -32,7 +32,6 @@ class QuartHeureValidator extends ConstraintValidator
 		}
 		else 
 		{
-			$this->setMessage($constraint->message);
 			return FALSE;	
 			
 		}

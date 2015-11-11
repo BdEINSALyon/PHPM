@@ -100,7 +100,7 @@ public function isValid($entity, Constraint $constraint)
     	
     	
     	if($result > 0){
-    		$this->setMessage($message);
+            $constraint->setMessage($message);
     		return FALSE;
     	}
     	

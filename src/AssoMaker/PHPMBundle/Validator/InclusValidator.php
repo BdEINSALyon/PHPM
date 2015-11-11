@@ -27,8 +27,8 @@ class InclusValidator extends ConstraintValidator  // vérifie si un créneau es
     			if ($debut < $disponibilite->getDebut()->getTimestamp() OR
     			$fin > $disponibilite->getFin()->getTimestamp())
     			{
-    				
-    				$this->setMessage($constraint->messageDisponibilite);
+
+                    $constraint->setMessage($constraint->messageDisponibilite);
     				return FALSE;
     			}
 
@@ -38,7 +38,7 @@ class InclusValidator extends ConstraintValidator  // vérifie si un créneau es
     			if ($debut < $plageHoraire->getDebut()->getTimestamp() OR
     			$fin > $plageHoraire->getFin()->getTimestamp())
     			{
-    				$this->setMessage($constraint->messagePlage);
+                    $constraint->setMessage($constraint->messagePlage);
     				return FALSE;
     			}
     			
