@@ -22,19 +22,21 @@ fos_user:
     firewall_name: main
     user_class: AssoMaker\BaseBundle\Entity\Orga
     registration:
+        form:
+            type: form.type.quickRegistration
         confirmation:
-            enabled:    true # change to true for required email confirmation
+            enabled:    false # change to true for required email confirmation
 
 hwi_oauth:
-  firewall_name: main
-  http_client:
-          verify_peer: false
-  resource_owners:
-    google:
-      type: google
-      client_id: %oauth.google.id%
-      client_secret: %oauth.google.secret%
-      scope: "email profile"
+    firewall_name: main
+    http_client:
+        verify_peer: false
+    resource_owners:
+        google:
+            type: google
+            client_id: %oauth.google.id%
+            client_secret: %oauth.google.secret%
+            scope: "email profile"
 
 # Twig Configuration
 twig:
@@ -43,7 +45,9 @@ twig:
     form:
         resources:
             - 'AssoMakerBaseBundle:Form:fields.html.twig'
-            
+    globals:
+        admin_email: %admin_email%
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
@@ -80,6 +84,9 @@ doctrine:
                       dql:
                           datetime_functions:
                               timediff: AssoMaker\PHPMBundle\DQL\TimeDiff
+
+endroid_gcm:
+    api_key: %android.api.key%
 
 # Swiftmailer Configuration
 swiftmailer:

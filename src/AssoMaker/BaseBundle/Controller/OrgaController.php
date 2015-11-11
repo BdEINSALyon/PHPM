@@ -75,7 +75,7 @@ class OrgaController extends Controller {
      *
      * @Route("/trombi", name="orga_trombi")
      * @Template()
-     * @Secure("ROLE_ORGA")
+     * @Secure("ROLE_HARD")
      */
     public function trombiAction() {
 
@@ -269,9 +269,9 @@ WHERE t4_.id = ? ORDER BY debut";
         $orgas = $em->getConnection()->fetchAll("SELECT id FROM Orga WHERE statut>=1");
 
         // Create the zip archive
-        $zip = new \ZipArchive();
-        $zipName = tempnam("/tmp", "PLN");;
-        $zip->open($zipName,  \ZipArchive::CREATE);
+        //$zip = new \ZipArchive();
+        //$zipName = tempnam("/tmp", "PLN");;
+        //$zip->open($zipName,  \ZipArchive::CREATE);
         $pdfGenerator = $this->get('spraed.pdf.generator');
 
         // Generate planning for each orga (could take a long)
@@ -282,11 +282,14 @@ WHERE t4_.id = ? ORDER BY debut";
             } catch(\Exception $e){
                 $pdf = $pdfGenerator->generatePDF("User ".$o['id']." Erreur : ".$e->getMessage());
             }
-            $zip->addFromString($o['id'].".pdf",  $pdf);
+            $file = fopen("/tmp/pdfOrga/" . $o['id'] . ".pdf", "w+");
+            fwrite($file, $pdf);
+            fclose($file);
+            //$zip->addFromString($o['id'].".pdf",  $pdf);
         }
-        $zip->close();
+        //$zip->close();
         // Generate response
-        $response = new Response();
+        /*$response = new Response();
 
         // Set headers
         $response->headers->set('Cache-Control', 'private');
@@ -298,7 +301,8 @@ WHERE t4_.id = ? ORDER BY debut";
         $response->sendHeaders();
 
         $response->setContent(readfile($zipName));
-        return $response;
+        return $response;*/
+        return $this->redirect($this->generateUrl('base_accueil'));
     }
 
     /**
@@ -685,7 +689,7 @@ WHERE t4_.id = ? ORDER BY debut";
      * Charisme .
      *
      * @Route("/charisme", name="orga_charisme")
-     * @Secure("ROLE_VISITOR")
+     * @Secure("ROLE_ORGA")
      * @Template()
      */
     public function charismeAction() {
@@ -827,7 +831,7 @@ WHERE t4_.id = ? ORDER BY debut";
      */
     public function exportCSVAction() {
 
-        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+        if (false === $this->get('security.context')->isGranted('ROLE_HARD')) {
             throw new AccessDeniedException();
         }
 
