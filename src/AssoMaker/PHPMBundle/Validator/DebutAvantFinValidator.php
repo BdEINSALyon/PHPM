@@ -21,8 +21,6 @@ class DebutAvantFinValidator extends ConstraintValidator  // vérifie si le déb
 		}
     	
 		else {
-			
-		$this->setMessage($constraint->message);
 			return FALSE;
 		}
     		
