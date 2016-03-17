@@ -35,11 +35,7 @@ class DefaultController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
         if (!$this->get('security.context')->isGranted('ROLE_VISITOR')) {
-            if ($config->getValue('base_admin_login') == 1) {
-                return $this->adminLogin();
-            } else {
-                throw new AccessDeniedException();
-            }
+            throw new AccessDeniedException();
         }
 
         $statsUser = $em->getRepository('AssoMakerBaseBundle:Orga')->getStats($user);
@@ -98,8 +94,8 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('base_publichome'));
         } else {
             $session->set('token_id', $token->getId());
-            //return $this->redirect($this->generateUrl('hwi_oauth_service_redirect',array('service'=>'google')));
         }
+        return array();
     }
 
     /**
