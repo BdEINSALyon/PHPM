@@ -34,11 +34,11 @@
 
 
                 });
-            }
+            };
 
             $scope.filterById = function(item) {
                 return item.orgaId == $scope.search.orgaId
-            }
+            };
 
             $scope.search = new Array();
             $scope.orgas = new Array();
@@ -57,13 +57,13 @@
             $scope.ModeEnum = {
                 CONSOS: 0,
                 ADDSUB: 1
-            }
+            };
 
             $scope.fetch = function($scope, $http) {
                 $http.get('comptes.json').success(function(data) {
                     $scope.orgas = data;
                 });
-            }
+            };
 
             $scope.totalCP = function() {
                 var count = 0;
@@ -74,7 +74,7 @@
             };
 
             $scope.newBalance = function($key) {
-                $orga = $scope.orgas[$key]
+                $orga = $scope.orgas[$key];
                 if ($scope.mode == $scope.ModeEnum.CONSOS) {
                     return $orga.balance - $scope.alter[$orga.id] * $scope.prixConso;
                 }
@@ -82,7 +82,7 @@
                     return $orga.balance + $scope.alter[$orga.id] * 1;
                 }
 
-            }
+            };
 
             $scope.newTotalCP = function() {
                 var count = 0;
@@ -105,7 +105,7 @@
                     $scope.alter = new Array();
                     $scope.operation = '';
                 });
-            }
+            };
 
 
             $scope.printURL = "{{path('comptesPersoPrint')  }}";

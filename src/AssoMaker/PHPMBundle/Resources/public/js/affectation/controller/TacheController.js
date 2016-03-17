@@ -121,4 +121,4 @@ TacheController.prototype = {
 		$('#liste_taches').empty();
 	}
 
-}
+};

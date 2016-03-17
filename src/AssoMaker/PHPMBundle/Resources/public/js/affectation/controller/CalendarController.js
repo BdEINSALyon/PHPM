@@ -114,4 +114,4 @@ CalendarController.prototype = {
 	changeMode: function(obj) {
 		pmMode.setMode(obj.data.mode, true);
 	}
-}
+};

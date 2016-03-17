@@ -72,4 +72,4 @@ ParameterModel.prototype = {
 	getNiveaux: function() {
 		return pmAffectation.models.parameter.data.niveaux;
 	}
-}
+};

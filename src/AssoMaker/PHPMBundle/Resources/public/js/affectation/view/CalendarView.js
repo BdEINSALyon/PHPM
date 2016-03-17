@@ -138,7 +138,7 @@ CalendarView.prototype = {
 					_todayMidnight.setHours(0, 0, 0, 0);
 											
 					do {
-						_todayMidnight.setDate(_debutCreneau.getDate()+1)
+						_todayMidnight.setDate(_debutCreneau.getDate()+1);
 						pmAffectation.views.calendar.placeCreneauOrga(pmAffectation.current.orga.id, _dispos, _iDispo, _iCreneau, _debutCreneau, (Math.min(_todayMidnight.getTime(), _finCreneau)-_debutCreneau)/1000, _nbJour++);
 						_debutCreneau = new Date(_todayMidnight); // bien forcer la recopie
 					} while (_debutCreneau.getDate() <= _finCreneau.getDate())
@@ -172,7 +172,7 @@ CalendarView.prototype = {
 				_todayMidnight.setHours(0, 0, 0, 0);
 										
 				do {
-					_todayMidnight.setDate(_debutCreneau.getDate()+1)
+					_todayMidnight.setDate(_debutCreneau.getDate()+1);
 					pmAffectation.views.calendar.placeCreneauTache(_creneaux, _iCreneau, _debutCreneau, (Math.min(_todayMidnight.getTime(), _finCreneau)-_debutCreneau)/1000, _nbJour++);
 					_debutCreneau = new Date(_todayMidnight); // bien forcer la recopie
 				} while (_debutCreneau.getDate() <= _finCreneau.getDate())
@@ -294,4 +294,4 @@ CalendarView.prototype = {
 		};
 	}
 	
-}
+};

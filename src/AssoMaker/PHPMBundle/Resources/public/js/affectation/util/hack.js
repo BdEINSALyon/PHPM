@@ -14,7 +14,7 @@
  */
 $.fn.exists = function () {
 	return this.length !== 0;
-}
+};
 
 /*
  * Surcharge des objets Javascript par des méthodes perso
@@ -27,28 +27,28 @@ $.fn.exists = function () {
  */
 Date.prototype.getMyDate = function() {
 	return date('Y/m/d', Number(this.getTime()/1000));
-}
+};
 
 /*
  * Retourne la date à un format "genre SQL" : YYYY/MM/DD hh:mm:ss
  */
 Date.prototype.getMyDts = function() {
 	return date('Y/m/d H:I:s', Number(this.getTime()/1000));
-}
+};
 
 /*
  * Retourne que la partie time à un format "joli" : hh:mm
  */
 Date.prototype.getMyTime = function() {
 	return date('H:I', Number(this.getTime()/1000));
-}
+};
 
 /*
  * Renvoie la date sous le format demandé
  */
 Date.prototype.getThisFormat = function(leFormat) {
 	return date(leFormat, mktime(this.getHours(), this.getMinutes(), this.getSeconds(), Number(this.getMonth()+1), this.getDate(), this.getFullYear()));
-}
+};
 
 /*
  * Fonctions renvoyant la même chose que la date Javascript
@@ -58,16 +58,16 @@ Date.prototype.getThisFormat = function(leFormat) {
 Date.prototype.getPMonth = function() {
 	var _mois = this.getMonth()+1; // on rajoute 1 pour coller à ce que fait PHP
 	return (_mois < 10 ? '0' : '') + Number(_mois);
-}
+};
 Date.prototype.getPDate = function() {
 	var _jour = this.getDate();
 	return (_jour < 10 ? '0' : '') + Number(_jour);
-}
+};
 Date.prototype.getPHours = function() {
 	var _heure = this.getHours();
 	return (_heure < 10 ? '0' : '') + Number(_heure);
-}
+};
 Date.prototype.getPMinutes = function() {
 	var _minute = this.getMinutes();
 	return (_minute < 10 ? '0' : '') + Number(_minute);
-}
+};

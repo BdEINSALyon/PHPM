@@ -39,7 +39,7 @@ $(document).ready(function() {
         return c*(t/d)+b;
       }
     });
-  }
+  };
   rotation();
 
   var $tumbleweed = $('#tumbleweed');

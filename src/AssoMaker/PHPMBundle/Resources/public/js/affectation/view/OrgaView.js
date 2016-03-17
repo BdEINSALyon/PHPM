@@ -68,7 +68,7 @@ OrgaView.prototype = {
 			
 			var _html = '<div class="item orga'+_class+'" id="orga_'+_orgas[_iOrga]['id']+'" idOrga="'+_orgas[_iOrga]['id']+'">'+
 						 _orgas[_iOrga]['prenom']+' '+_orgas[_iOrga]['nom'];
-			(_orgas[_iOrga]['surnom'] !== null) && (_html += ' ('+_orgas[_iOrga]['surnom']+')')
+			(_orgas[_iOrga]['surnom'] !== null) && (_html += ' ('+_orgas[_iOrga]['surnom']+')');
 			_html += _equipes+'</div>';
 			
 			$('#liste_orgas').append(_html);
@@ -96,5 +96,5 @@ OrgaView.prototype = {
 	 */
 	viewOrgaDetails: function(obj) {
 		var _popup = window.open(pmAffectation.url+'orga/'+obj.id+'/edit');		
-	},
-}
+	}
+};

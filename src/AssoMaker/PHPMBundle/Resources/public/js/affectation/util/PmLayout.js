@@ -105,4 +105,4 @@ PmLayout.prototype = {
 	setPourcentWidth: function(unElement, elementRelatif) {
 		$(unElement).width(this.getPourcentWidth(unElement, elementRelatif)+'%');
 	}
-}
+};

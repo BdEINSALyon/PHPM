@@ -124,5 +124,5 @@ CreneauController.prototype = {
 		pmAffectation.data.creneaux = {};
 		
 		$('#liste_taches').empty();
-	},
-}
+	}
+};

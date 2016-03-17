@@ -36,4 +36,4 @@ PmMessage.prototype = {
 		
 		setTimeout(function() {$('#message').fadeOut(2000, 'linear')}, 5000); // effet opaque 5s puis disparait en 2
 	},
-}
+};

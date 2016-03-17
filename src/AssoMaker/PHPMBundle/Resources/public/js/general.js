@@ -56,5 +56,5 @@ message = {
 		$('#message').html('<div class="notification">'+str+'</div>');
 		
 		$("#message").fadeOut(12000, 'linear'); // disparait après 12 secondes
-	},
-}
+	}
+};

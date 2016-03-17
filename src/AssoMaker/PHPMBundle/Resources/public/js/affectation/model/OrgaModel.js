@@ -156,4 +156,4 @@ OrgaModel.prototype = {
 		
 		return _dispos;
 	}
-}
+};

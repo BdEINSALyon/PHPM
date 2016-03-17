@@ -84,5 +84,5 @@ CreneauModel.prototype = {
 		}
 		
 		return _creneaux;
-	},
-}
+	}
+};

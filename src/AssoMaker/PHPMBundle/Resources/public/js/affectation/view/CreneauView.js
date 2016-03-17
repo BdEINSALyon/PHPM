@@ -101,5 +101,5 @@ CreneauView.prototype = {
 				}
 			});
 		}
-	},
-}
+	}
+};

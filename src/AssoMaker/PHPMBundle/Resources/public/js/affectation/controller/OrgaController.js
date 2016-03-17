@@ -159,4 +159,4 @@ OrgaController.prototype = {
 		
 		$('#liste_orgas').empty();
 	}
-}
+};
