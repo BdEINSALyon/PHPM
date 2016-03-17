@@ -168,28 +168,6 @@ class OrgaRepository extends EntityRepository {
                         ->getSingleScalarResult(), 1);
     }
 
-    /*    Voir comment on peut récupérer le résultat d'une requête SQL en natif
-      public function getTacheSansCreneau()
-      {
-
-      /*
-      return $this->getEntityManager()
-      ->createQuery("SELECT t FROM AssoMakerPHPMBundle:Tache t WHERE (t.id = (SELECT p.tache FROM AssoMakerPHPMBundle:PlageHoraire WHERE (p.id NOT IN (SELECT c.plageHoraire FROM AssoMakerPHPMBundle:Creneau))")
-      ->getResult();
-
-
-
-      $conn = $em->getConnection();
-
-      $sql = "SELECT t FROM AssoMakerPHPMBundle:Tache t WHERE (t.id = (SELECT p.tache FROM AssoMakerPHPMBundle:PlageHoraire WHERE (p.id NOT IN (SELECT c.plageHoraire FROM AssoMakerPHPMBundle:Creneau))";
-
-      $conn->query($sql);
-
-      $conn->close();
-      }
-
-     */
-
     public function search($s) {
         return $this->getEntityManager()
                         ->createQuery("SELECT o FROM AssoMakerBaseBundle:Orga o WHERE (o.nom LIKE :s OR o.prenom LIKE :s OR o.surnom LIKE :s OR o.telephone LIKE :s OR o.email LIKE :s OR o.commentaire LIKE :s) AND o.statut != '-1'")
@@ -283,69 +261,5 @@ class OrgaRepository extends EntityRepository {
     public function count(){
         return $this->getEntityManager()->createQueryBuilder('o.id')->select("COUNT(o.id)")->from('AssoMakerBaseBundle:Orga','o')->getQuery()->getSingleScalarResult();
     }
-
-//	getOrgasWithCriteriaTache numéro 2 pour gérer le tache id
-    /*
-      public function getOrgasWithCompatibleTache($tache_id)
-      {
-
-      $qb = $this->getEntityManager()->createQueryBuilder();
-      $expr = $qb->expr();
-
-      $andx = $expr->andx(
-
-
-
-      //$expr->eq('t.id',$tache_id),
-      $expr->neq('t.id',$tache_id),
-
-      $expr->eq('d.orga','o'),
-      $expr->neq('d.orga','0'),
-      $expr->eq('co.disponibilite','d'),
-      $expr->eq('ct.plageHoraire','p'),
-      $expr->eq('p.tache','t')
-
-
-      $expr->eq('ct.disponibilite','0'),
-      $expr->lte('ct.debut','d.fin'),
-      $expr->gte('ct.fin','d.debut'),
-
-      'ct.id NOT IN (SELECT ci.id FROM AssoMakerPHPMBundle:Creneau ci
-      WHERE
-
-      ( (ci.debut < co.fin) AND (ci.fin > co.debut ) )
-      OR
-      (((ci.debut<p.debut)OR(ci.fin > p.fin))OR((ci.debut >= p.fin)OR(ci.fin <= p.debut)))
-
-      )'
-
-
-      );
-
-      $qb
-      ->select('o, ct')
-
-      ->from('AssoMakerBaseBundle:Orga','o')
-
-
-
-      ->from('AssoMakerPHPMBundle:Disponibilite', 'd')
-      ->from('AssoMakerPHPMBundle:Creneau', 'co')
-      ->from('AssoMakerPHPMBundle:PlageHoraire', 'p')
-      ->from('AssoMakerPHPMBundle:Tache', 't')
-      ->from('AssoMakerPHPMBundle:Creneau', 'ct')
-
-
-      ->where($andx);
-
-      //exit(var_dump($qb->getQuery()->getDQL()));
-
-
-
-      return $qb->getQuery()->getResult();
-
-
-      }
-      // */
 }
 
