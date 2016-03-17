@@ -14,16 +14,16 @@
                 $scope.types = {{ types|raw }};
                 $scope.deleted = function(elem) {
             return ((elem.statut == -1) && ($scope.search.statut == -1) || (elem.statut >= 0) && ($scope.search.statut >= 0));
-        }
+        };
 
         $scope.myComFilter = function(elem) {
             return ((elem.equipe.id == {{app.user.equipe.id}}) && ($scope.myCom)) || !$scope.myCom;
-        }
+        };
         
 
         $scope.lastCom = function(coms) {
             console.log(coms.length)
-        }
+        };
 
         $scope.countStatut = function(statut) {
             var count = 0;
@@ -34,7 +34,7 @@
 
             });
             return count;
-        }
+        };
 
         $scope.countLog = function() {
             var count = 0;
@@ -44,7 +44,7 @@
                 }
             });
             return count;
-        }
+        };
 
         $scope.countHumain = function() {
             var count = 0;
@@ -54,7 +54,7 @@
                 }
             });
             return count;
-        }
+        };
 
         $scope.countSecu = function() {
             var count = 0;
@@ -64,7 +64,7 @@
                 }
             });
             return count;
-        }
+        };
         
         $scope.showSigna = false;
         

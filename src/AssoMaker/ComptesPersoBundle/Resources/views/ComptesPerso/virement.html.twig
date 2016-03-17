@@ -1,55 +1,53 @@
-{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+{% extends "AssoMakerBaseBundle::layout.html.twig" %}
 {% set pageTitle = 'Effectuer un virement' %}
 
 {% block content %}
 
-<script>
-function Ctrl($scope) {
-	  $scope.montant='5';
-	  $scope.solde={{ soldeCP }};
+    <script>
+        function Ctrl($scope) {
+            $scope.montant = '5';
+            $scope.solde ={{ soldeCP }};
 
-	  function erreur(){
-		  if(montant>0)
-		  return 
-		  }
-console.log(virementForm);
-	  
-	  
-	}
-</script>
+            function erreur() {
+            }
+        }
+    </script>
 
-<form name="virementForm" ng-app class="form-horizontal" action="{{ path('comptesPerso_virement') }}" method="post" {{ form_enctype(form) }} ng-controller="Ctrl">
-	<div class="row-fluid">
-		<h2>Effectuer un virement</h2>
-		
+    <form name="virementForm" ng-app class="form-horizontal" action="{{ path('comptesPerso_virement') }}"
+          method="post" {{ form_enctype(form) }} ng-controller="Ctrl">
+        <div class="row-fluid">
+            <h2>Effectuer un virement</h2>
+
 
             {{ form_label(form.destinataire) }}
             {{ form_errors(form.destinataire) }}
-		    {{ form_widget(form.destinataire) }}
-			{{ form_label(form.montant) }}
-			{{ form_errors(form.montant) }}
-			{{ form_widget(form.montant, { 'attr': {'ng-model': 'montant'} }) }}
-			{{ form_label(form.raison) }}
-			<input type="text" id="assomaker_comptes_perso_bundle_virement_raison" name="assomaker_comptes_perso_bundle_virement[raison]" required="required" ng-model="raison" class="ng-pristine ng-invalid ng-invalid-required">
-			{{ form_errors(form.raison) }}
-	</div>	
-	<div class="form-actions" >
-	
-              	    <div class="btn-toolbar">
-	         			<button type="number" min="0"  step="0.01" class="btn btn-success"  ng-disabled="virementForm.$invalid" type="submit">
-	         			    Confirmer le virement
-	         			</button>
-	         								
-					</div>
-              </div>
+            {{ form_widget(form.destinataire) }}
+            {{ form_label(form.montant) }}
+            {{ form_errors(form.montant) }}
+            {{ form_widget(form.montant, { 'attr': {'ng-model': 'montant'} }) }}
+            {{ form_label(form.raison) }}
+            <input type="text" id="assomaker_comptes_perso_bundle_virement_raison"
+                   name="assomaker_comptes_perso_bundle_virement[raison]" required="required" ng-model="raison"
+                   class="ng-pristine ng-invalid ng-invalid-required">
+            {{ form_errors(form.raison) }}
+        </div>
+        <div class="form-actions">
+
+            <div class="btn-toolbar">
+                <button type="number" min="0" step="0.01" class="btn btn-success" ng-disabled="virementForm.$invalid"
+                        type="submit">
+                    Confirmer le virement
+                </button>
+
             </div>
+        </div>
+        </div>
 
-	
 
-	</div>
+        </div>
 
-	{{ form_widget(form._token) }}
-</form>
+        {{ form_widget(form._token) }}
+    </form>
 {% endblock %}
 
 {% block actions %}

@@ -31,7 +31,7 @@
                 }
                 return message;
 
-            }
+            };
 
             $scope.charisme = function() {
                 var count = 0;
@@ -56,11 +56,11 @@
                 }
 
                 return count;
-            }
+            };
 
             $scope.ratiocharisme = function() {
                 return 100 * $scope.charisme() / $scope.maxpoints();
-            }
+            };
 
 
             $scope.dispos = new Array();

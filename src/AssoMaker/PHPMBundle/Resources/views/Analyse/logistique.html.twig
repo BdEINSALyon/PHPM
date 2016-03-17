@@ -32,7 +32,7 @@
         
     $scope.setRidm = function($id) {
             $scope.ridm = $id;
-        }
+        };
         
         $scope.search = {};
         $scope.ridm=0;
@@ -60,7 +60,7 @@ $scope.successMaj[$id] = true;
                 }).error(function(data) {
 $scope.successMaj[$id] = false;
                 });
-            }
+            };
             
           $scope.changeTacheCom = function($id,$com) {
 
@@ -71,7 +71,7 @@ $scope.successTacheMaj[$id] = true;
                 }).error(function(data) {
 $scope.successTacheMaj[$id] = false;
                 });
-            }
+            };
             
             $scope.non = function($str) {
             if($str==null){

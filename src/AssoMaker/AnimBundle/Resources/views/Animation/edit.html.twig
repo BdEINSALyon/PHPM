@@ -45,11 +45,11 @@
 
             $scope.addHoraire = function() {
                 $scope.horaires.push({"jour": "Samedi", "debut": "10h00", "fin": "18h00"});
-            }
+            };
 
             $scope.remHoraire = function(index) {
                 $scope.horaires.splice(index, 1);
-            }
+            };
 
             $scope.addMatos = function(categorie, nom) {
 
@@ -69,7 +69,7 @@
 
                 $scope.customMatos = null;
 
-            }
+            };
 
             $scope.cleanMatos = function() {
                 for (var i = 0; i < $scope.materiel.length; i++)
@@ -86,7 +86,7 @@
                         $scope.materiel.splice(i, 1);
                     }
                 }
-            }
+            };
 
 
             {% if entity.horaires is not null  %}

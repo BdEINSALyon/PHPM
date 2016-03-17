@@ -45,7 +45,7 @@
                 "name": "twitter/bootstrap",
                 "version": "2.3.2",
                 "dist": {
-                    "url": "http://getbootstrap.com/2.3.2/assets/bootstrap.zip",
+                    "url": "https://getbootstrap.com/2.3.2/assets/bootstrap.zip",
                     "type": "zip"
                 }
             }
@@ -60,7 +60,7 @@
                 "name": "jquery/jquery",
                 "version": "master",
                 "dist": {
-                    "url": "http://code.jquery.com/jquery-latest.min.js",
+                    "url": "https://code.jquery.com/jquery-latest.min.js",
                     "type": "file"
                 }
 
@@ -109,7 +109,7 @@
                 "name": "angular/angularJS",
                 "version": "1.0.4",
                 "dist": {
-                    "url": "http://code.angularjs.org/1.0.4/angular-1.0.4.zip",
+                    "url": "https://code.angularjs.org/1.0.4/angular-1.0.4.zip",
                     "type": "zip"
                 }
 
@@ -168,7 +168,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "secure-http": false
     },
     "minimum-stability": "dev",
     "extra": {

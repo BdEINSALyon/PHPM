@@ -393,10 +393,6 @@ class Tache {
     }
 
     public function getMateriel() {
-//         $em = $this->getDoctrine()->getEntityManager();
-//         $data = $em->createQuery('SELECT b,m FROM AssoMakerPHPMBundle:BesoinMateriel b JOIN b.materiel m JOIN b.tache t WHERE t.id = 1')->getResult();
-
-
         $materiel = array();
 
 

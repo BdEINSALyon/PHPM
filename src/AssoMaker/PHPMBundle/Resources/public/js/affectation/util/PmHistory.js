@@ -140,5 +140,5 @@ PmHistory.prototype = {
 		pmAffectation.hashChange = false;
         history.pushState({params: _newHash}, "Etat " + _newHash, _newHash);
         pmAffectation.hashChange = true;
-	},
-}
+	}
+};

@@ -364,8 +364,8 @@ class AnalyseController extends Controller {
         $plage = $plages[$plageId];
         $debutPlage = new \DateTime($plage['debut']);
         $finPlage = new \DateTime($plage['fin']);
-        $debutPlage = $debutPlage->gettimestamp();
-        $finPlage = $finPlage->gettimestamp();
+        $debutPlage = $debutPlage->getTimestamp();
+        $finPlage = $finPlage->getTimestamp();
 
         $debut = $debutPlage;
         $fin = $debutPlage + 900;

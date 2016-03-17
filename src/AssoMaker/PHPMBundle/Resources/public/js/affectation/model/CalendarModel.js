@@ -100,5 +100,5 @@ CalendarModel.prototype = {
 		} else {
 			pmMessage.alert("Impossible de réaliser l'opération : "+data);
 		}
-	},
-}
+	}
+};

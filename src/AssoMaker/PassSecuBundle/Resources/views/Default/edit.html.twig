@@ -9,14 +9,14 @@ function Ctrl($scope){
 
 	$scope.passesRestants= function(){
 		return $scope.maxPersonnes - $scope.personnes.length;
-	}
+	};
 	
 	$scope.addPass= function(){
 		if(($scope.maxPersonnes - $scope.personnes.length) >0){
 		$scope.personnes.push({'nom':''})
 		}
 
-	}
+	};
 
 	$scope.pp=[];
 	{% for n,p in entity.pointsPassage%}

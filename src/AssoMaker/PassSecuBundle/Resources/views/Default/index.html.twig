@@ -13,7 +13,7 @@ function Ctrl($scope){
 
 	$scope.deleted = function(elem){
 		return ((elem.statut ==-1)&&($scope.search.statut==-1)||(elem.statut >=0)&&($scope.search.statut>=0));
-		}
+		};
 
 	$scope.countStatut = function(statut){
 		 var count = 0;
@@ -24,7 +24,7 @@ function Ctrl($scope){
 		      console.log(count);
 		    });
 		    return count;
-		}
+		};
 
 	$scope.prelink = "{{ url('pass_pass_index') }}";
 	

@@ -171,11 +171,7 @@ PmUtils.prototype = {
 	 * Fonction perso, rapide se basant sur la représentation JSON
 	 */
 	areEquals: function(xObj, yObj) {
-		if (JSON.stringify(xObj) === JSON.stringify(yObj)) {
-			return true;
-		} else {
-			return false;
-		}
+		return JSON.stringify(xObj) === JSON.stringify(yObj);
 	},
 	
 	/*

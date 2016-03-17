@@ -89,5 +89,5 @@ PmMode.prototype = {
 			this.slave.update = function() { pmAffectation.controllers.orga.getData() };
 			this.orgaClick = function(obj) { pmAffectation.controllers.orga.affecterOrga(obj); }
 		}
-	},
-}
+	}
+};

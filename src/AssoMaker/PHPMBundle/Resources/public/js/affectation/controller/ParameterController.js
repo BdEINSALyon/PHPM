@@ -70,4 +70,4 @@ ParameterController.prototype = {
 		pmLayout.resizeCalendar();
 	}
 	
-}
+};

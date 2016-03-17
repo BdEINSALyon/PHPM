@@ -77,5 +77,5 @@ TacheView.prototype = {
 	 */
 	viewTacheDetails: function(obj) {
 		var _popup = window.open(pmAffectation.url+'tache/'+obj.id+'/edit');		
-	},
-}
+	}
+};
