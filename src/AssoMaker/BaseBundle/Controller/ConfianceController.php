@@ -45,7 +45,7 @@ class ConfianceController extends Controller
             return array('response'=>$a);
         }
         
-        
+        throw new \HttpRequestException();
     }
 
 
