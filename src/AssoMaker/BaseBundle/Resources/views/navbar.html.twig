@@ -18,10 +18,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a style="padding: 3px 10px;" class="brand" href="{{ path('base_accueil') }}">
-                {% image '@AssoMakerBaseBundle/Resources/public/images/logo-bde-bal.png' %}
-                <img src="{{ asset_url }}" alt="Bal"/>
-                {% endimage %}
+            <a style="height:30px;padding: 3px 10px;" class="brand" href="{{ path('base_accueil') }}">
+                <img src="http://raid.bde-insa-lyon.fr/wp-content/uploads/2014/03/logo-declin%C3%A9-noir.png" alt="Bal"/>
             </a>
             {% if app.user and is_granted("ROLE_ORGA") %}
                 <div class="nav-collapse collapse">
