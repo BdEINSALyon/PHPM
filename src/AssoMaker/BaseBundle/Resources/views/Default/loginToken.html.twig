@@ -4,7 +4,7 @@
     <div class="row-fluid">
         <div class="span6">
             <div class="page-header">
-                <h1>Bienvenue au Gala <small>Inscription</small></h1>
+                <h1>Bienvenue sur le site d’inscription <small>Orga du XXème Gala de l’INSA Lyon !</small></h1>
             </div>
             {% for flashMessage in app.session.flashbag.get('error') %}
                 <div class="alert alert-error">
@@ -17,10 +17,10 @@
                 </div>
             {% endfor %}
             <div id="welcome" style="text-align: justify; font-size: large">
-                <p>Tu viens t'inscrire comme orga au Gala de l'école ? Quelle bonne idée, tu va voir une super ambiance,
-                organiser un grand événement de plus de 3000 personnes !</p>
-                <p>Ce site va te permettre de donner des disponibilités sur l'événement et de découvrir quelles que
-                    jours avant l'évènement. Pour te connecter, utilise un compte Google (il t'en faut forcément un) :</p>
+<p>Comme tu le sais, cette année le Gala revient dans un nouveau format: il est dédié à 1500 diplômés et leurs parents et se déroulera à la Sucrière.</p>
+<p>Pour participer à l’organisation et découvrir la super ambiance de cet évènement majeur du BDE, c’est ici !</p>
+<p>Sur ce site, tu vas pouvoir donner tes disponibilités pendant l’évènement et d’obtenir ton planning. Pour t’inscrire, il te faut un compte Google.</p>
+<p>A bientôt !</p>
             </div>
             <div id="logins" style="width: 100%">
                 <a
@@ -34,14 +34,12 @@
                 Clef : {{ token }}
             </div>
         </div>
-        <div class="span6" style="min-width: 700px;">
-            <div class="well well-small">
-                <div class="page-header">
-                    <h1>Teaser</h1>
-                </div>
-                <div>
-                    <iframe width="560" height="315" style="margin:0 auto;display: block;" src="//www.youtube.com/embed/SPF2ZZ3Fg8Q" frameborder="0" allowfullscreen></iframe>
-                </div>
+        <div class="span6">
+            <div class="page-header">
+                <h1>Teaser</h1>
+            </div>
+            <div>
+                <iframe width="560" height="315" style="margin:0 auto;display: block;" src="//www.youtube.com/embed/oh7T2arglLc" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
