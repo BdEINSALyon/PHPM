@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -49,13 +50,7 @@ class CreneauRepository extends EntityRepository {
 
         $rows = $conn->fetchAll($sql);
 
-        foreach ($rows as $row) {
-            var_dump($c);
-            $co = $c[0];
-
-            $a[$c['w']][$co->getId()] = $co;
-            //$a[$c['w'][($c[0])->getId()]]=$c;
-        }
+        throw new AccessDeniedException();
 
         //$rows = $conn->prepare($sql)->execute();
 
