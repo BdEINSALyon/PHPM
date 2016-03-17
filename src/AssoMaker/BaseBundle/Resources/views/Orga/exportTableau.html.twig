@@ -6,6 +6,7 @@
    <table>
    	<thead>
    	  <tr>
+   		<th>id</th>
    		<th>Nom</th>
    		<th>Prénom</th>
    		<th>Surnom</th>
@@ -26,6 +27,7 @@
    	<tbody>
    		{% for orga in orgas %}
    		<tr>
+   			<td>{{ orga.id }}</td>
    			<td>{{ orga.nom }}</td>
    			<td>{{ orga.prenom }}</td>
    			<td>{{ orga.surnom }}</td>

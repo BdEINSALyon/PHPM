@@ -9,7 +9,7 @@
 
     @page :first {
         @top-center {
-            content: "Planning Gala XIX"
+            content: "Planning Gala XX"
         }
     }
 
@@ -115,12 +115,16 @@ float:left;
 float:right;
 }
 
+    #sos-info div b:first-child{
+        display: inline-block;
+        width: 120px;
+    }
 
 
 </style>
 <div class="row-fluid " >
     <div style="min-height:60px; margin-bottom:10px;">
-        <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/Gala_Noir.png" style="float: left;margin-bottom: 1cm">
+        <img src="http://gala.bde-insa-lyon.fr/wp-content/uploads/2014/05/logo_gala_site3.png" style="float: left;margin-bottom: 1cm">
         <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/Logo%20BdE%20noir.png" style="float: right; height:50px;">
         <div style="width:300pt; margin: 10px auto; text-align: center;"><h1>{{ entitiesMacro.orga(orga) }}</h1></div>
     </div>
@@ -132,24 +136,21 @@ float:right;
             Pour éviter que tu ne confondes avec ton planning, ces cases sont <b>grisées</b>.</div>
         </div>
     {% endif %}
-        {% if phpm_planning_message != "" %}
-        <div class="block block-content disclamer">
-            {{ phpm_planning_message | raw }}
-        </div>
-        {% endif %}
 
         <div class="block">
             <div class="block-title" style="padding: 5px">SOS</div>
-            <div class="block-content important">
-                Sébastien, Resp. Orga : 06.31.26.19.96<br/>
-                Jérémy, Resp. Sécu : 06.10.09.10.49
+            <div class="block-content important" id="sos-info">
+                <div><b>Nicolas Hastir</b> Resp <b>Orga</b> : 07 78 54 58 79</div>
+                <div><b>Skander Mankaï</b> Resp <b>Sécu</b> : 06 38 17 91 91</div>
+                <div><b>Antonin Barbet</b> Resp <b>Gala</b> : 06 08 25 57 11</div>
+                <div><b>Antoine Fagot</b>  Président du BDE : 06 58 85 54 88</div>
             </div>
         </div>
 
         <div class="block" id="map">
-            <div class="block-title" style="padding: 5px">Plan du Palais</div>
+            <div class="block-title" style="padding: 5px">Plan de La Sucrière</div>
             <div class="block-content">
-                <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/plans_gala/plan_simplifie_noirblanc.png" width="100%">
+                <img src="https://raw.githubusercontent.com/BdEINSALyon/logos-bde/master/plans_gala/PLAN_orga.png" width="100%">
             </div>
         </div>
 
