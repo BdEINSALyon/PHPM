@@ -6,6 +6,10 @@ use AssoMaker\PHPMBundle\Entity\Config;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * Fixtures for the config table, it loads all default values in the database for configuration
+ * @package AssoMaker\BaseBundle\DataFixtures\ORM
+ */
 class BaseConfigFixture implements FixtureInterface {
 
     public function load(ObjectManager $manager) {
