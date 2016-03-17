@@ -183,7 +183,6 @@ class BesoinOrgaController extends Controller
             }
             
             $tacheId=$entity->getPlageHoraire()->getTache()->getId();
-            exit();
             $em->remove($entity);
             $em->flush();
         

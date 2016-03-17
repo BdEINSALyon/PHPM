@@ -136,4 +136,4 @@ TacheModel.prototype = {
 		return _creneaux;
 	}
 
-}
+};

@@ -1285,7 +1285,6 @@ class Orga extends BaseUser implements UserInterface {
     }
 
     public function isBirthDayValid(ExecutionContext $context) {
-        echo 'a';die;
         if ($this->dateDeNaissance >= new \DateTime()) {
             $context->addViolation('dateDeNaissance', 'Cette date doit être dans le passé.');
         }

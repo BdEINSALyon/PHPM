@@ -42,22 +42,6 @@ class CreneauRepository extends EntityRepository {
         return $result;
     }
 
-    public function getCreneauxParJour2($orga_id) {
-        $conn = $this->_em->getConnection();
-        //$orga_id=$orga->getId();
-
-        $sql = "SELECT c.id, WEEKDAY(c.debut) d FROM Creneau c LEFT JOIN Disponibilite d ON c.disponibilite_id=d.id LEFT JOIN Orga o ON d.orga_id=o.id ";
-
-        $rows = $conn->fetchAll($sql);
-
-        throw new AccessDeniedException();
-
-        //$rows = $conn->prepare($sql)->execute();
-
-
-        return $rows;
-    }
-
     public function getCreneauxParJourNative($orga_id) {
 
 

@@ -21,7 +21,7 @@ class OrgaRepository extends EntityRepository {
                         ->where('o.privileges >= 1')
                         ->where('o.id != :userId')
                         ->setParameter('userId', $userId);
-        ;
+        
     }
 
     public function findAllComptesPersoUsersExcept($userId) {
@@ -30,8 +30,7 @@ class OrgaRepository extends EntityRepository {
                         ->join('o.equipe', 'e')
                         ->where('o.id != :userId')
                         ->andWhere('e.comptesPersoEnabled = 1')
-                        ->setParameter('userId', $userId)
-        ;
+                        ->setParameter('userId', $userId);
     }
 
     public function getOrgasWithCriteria($annee_permis, $maxDateNaissance, $plage_id, $niveau_confiance, $equipe_id) {
