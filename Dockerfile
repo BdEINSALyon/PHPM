@@ -11,3 +11,10 @@ RUN apt-get -y update && apt-get -y install \
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
+ADD ./ /app/
+WORKDIR /app
+RUN composer install --no-dev --optimize-autoloader
+RUN php bin/console cache:clear --env=prod --no-debug
+RUN php bin/console assetic:dump --env=prod --no-debug
+RUN php app/console doctrine:migrations:migrate
+ENTRYPOINT ["php","app/console","server:run"]
