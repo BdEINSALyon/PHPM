@@ -18,7 +18,7 @@ monolog:
             members: [streamed, buffered]
         streamed:
             type:  stream
-            path:  %kernel.logs_dir%/prod.log
+            path: 'php://stderr'
             level: debug
         buffered:
             type:    buffer
