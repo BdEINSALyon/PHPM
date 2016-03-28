@@ -36,6 +36,7 @@
         "angular/angularUI": "0.4.0",
         "friendsofsymfony/user-bundle": "v1.3.5",
         "hwi/oauth-bundle": "0.4.*@dev",
+        "incenteev/composer-parameter-handler": "2.1.*",
         "spraed/pdf-generator-bundle": "v1.2"
     },
     "repositories": [
@@ -154,13 +155,19 @@
 
     ],
     "scripts": {
+        "warmup": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache"
+        ],
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -178,6 +185,26 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "symlink"
+        "symfony-assets-install": "symlink",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_url":         "DATABASE_URL",
+                "monolog_action_level": "LOG_LEVEL",
+
+                "mailer_host":          "MAIL_HOST" ,
+                "mailer_user":          "MAIL_USER" ,
+                "mailer_password":      "MAIL_PASSWORD" ,
+                "mailer_transport":     "MAIL_TRANSPORT" ,
+
+                "locale":               "LOCALE",
+                "secret":               "SECRET",
+                "admin_email":          "ADMIN_EMAIL",
+                "oauth.google.id":      "OAUTH_GOOGLE_ID",
+                "oauth.google.secret":  "OAUTH_GOOGLE_SECRET",
+
+                "android.api.key":      "ANDROID_API_KEY"
+            }
+        }
     }
 }

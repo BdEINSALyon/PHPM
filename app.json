@@ -15,67 +15,38 @@
       "description": "Secret pour générer des messages secrets :-D.",
       "generator": "secret"
     },
-    "PASSWORD_ITERATIONS": {
-      "description": "Nombre d'itération de hash des mots de passes.",
-      "value": "1337"
-    },
     "MAIL_HOST" : {
       "description": "Serveur d'envoie d'email.",
       "value": "smtp.gmail.com"
     },
     "MAIL_USER" : {
-      "description": "Utilisateur du SMTP.",
-      "value": "adhesion.app@gmail.com"
+      "description": "Utilisateur du SMTP."
     },
     "MAIL_PASSWORD" : {
       "description": "Mot de passe du SMTP."
     },
-    "MAIL_PORT" : {
-      "description": "Port du SMTP.",
-      "value": "587"
+    "MAIL_TRANSPORT" : {
+      "description": "Mailer protocol.",
+      "value": "smtp"
     },
-    "MAIL_ENCRYPTION" : {
-      "description": "Chiffrement SMTP.",
-      "value": "tls"
-    },
-    "MAILGUN_API" : {
-      "description": "MailGun (mail de bienvenu), clef d'api.",
-      "value": ""
-    },
-    "MAILGUN_DOMAIN" : {
-      "description": "MailGun (mail de bienvenu), domaine d'expédition.",
-      "value": ""
-    },
-    "LOCAL": {
+    "LOCALE": {
       "description": "Langue pour les dates.",
       "value": "fr"
     },
-    "HTTP_HOST": {
-      "description": "Adresse du site pour les utilisateurs finaux. (utilisé pour les emails)",
-      "value": "https://adhesion.example.org"
+    "ADMIN_EMAIL": {
+      "description": "Admin email address."
     },
-    "AZURE_CLIENT" : {
-      "description": "Client ID AzureAD",
-      "value": ""
+    "OAUTH_GOOGLE_ID": {
+      "description": "Google OAuth ID."
     },
-    "AZURE_SECRET" : {
-      "description": "Client Secret AzureAD",
-      "value": ""
+    "OAUTH_GOOGLE_SECRET": {
+      "description": "Google OAuth Secret."
     },
-    "AZURE_APP" : {
-      "description": "Client APP id AzureAD",
-      "value": "http://adhesion.bde-insa-lyon.fr"
-    },
-    "AZURE_TENANT" : {
-      "description": "Tenant des utilisateurs de l'application.",
-      "value": "example.onmicrosoft.com"
-    },
-    "AZURE_RESOURCE": {
-      "description": "Resource demandé en autorisation.",
-      "value": "https://graph.microsoft.com"
+    "ANDROID_API_KEY": {
+      "description": "Android API Key."
     }
   },
-  "image": "heroku/ruby",
+  "image": "heroku/php",
   "addons": [
     "heroku-postgresql"
   ],
