@@ -49,8 +49,8 @@ Desktop.ini
 
 # Composer #
 ############
-composer.phar
-composer.lock
+#composer.phar
+#composer.lock
 
 # Others #
 #########
