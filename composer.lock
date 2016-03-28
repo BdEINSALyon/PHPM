@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "559c47c0d6dcc41dbe8d5a3ffe0d774c",
-    "content-hash": "34bf988a21af56871d2f209ca614aab8",
+    "hash": "f3555b8bc4c55d996ba3880611bbece5",
+    "content-hash": "c8d7ff170b065b6b0353b836cf3a7e05",
     "packages": [
         {
             "name": "akzhan/jwysiwyg",
@@ -2890,7 +2890,11 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "ext-bcmath": "*",
+        "ext-apcu": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": []
 }
