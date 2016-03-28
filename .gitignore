@@ -54,7 +54,6 @@ Desktop.ini
 
 # Others #
 #########
-.htaccess
 .buildpath
 
 # Hacks #
@@ -67,7 +66,6 @@ src/AssoMaker/BaseBundle/Controller/TestController.php
 /web/js
 /web/images
 /web/lib/*
-/web/.htaccess
 /web/up
 /app/bootstrap*
 /bundles/
