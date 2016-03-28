@@ -47,11 +47,6 @@
   "addons": [
     "heroku-postgresql"
   ],
-  "buildpacks": [
-    {
-      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
-    }
-  ],
   "scripts": {
     "compile": "php app/console doctrine:fixtures:load"
   }
