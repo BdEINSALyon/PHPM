@@ -5,9 +5,9 @@ parameters:
     mailer_user:    ~
     mailer_password:    ~
     locale:    "fr"
-    secret:    ""
-    admin_email:    ""
-    oauth.google.id: ""
-    oauth.google.secret: ""
-    android.api.key: ""
+    secret:    "ThisIsNotSoSecretChangeMe"
+    admin_email:    "admin@example.com"
+    oauth.google.id: "Get one."
+    oauth.google.secret: "ThisIsNotSoSecret"
+    android.api.key: "Get one."
     
