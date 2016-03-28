@@ -26,7 +26,7 @@ fos_user:
             enabled:    true # change to true for required email confirmation
 
 hwi_oauth:
-  firewall_name: main
+  firewall_names: [main]
   http_client:
           verify_peer: false
   resource_owners:

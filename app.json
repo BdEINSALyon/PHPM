@@ -1,13 +1,10 @@
 {
-  "name": "Adhesion",
-  "description": "Gestion des adhérants d'un bureau des élèves.",
+  "name": "Planning Maker",
+  "description": "Planning Maker.",
   "keywords": [
-    "adhesion",
-    "bde",
-    "adhérant"
   ],
   "website": "https://www.bde-insa-lyon.fr",
-  "repository": "https://github.com/BdEINSALyon/adhesion",
+  "repository": "https://github.com/BdEINSALyon/PHPM",
   "logo": "https://www.iconfinder.com/icons/384887/download/png/512",
   "success_url": "/",
   "env": {
