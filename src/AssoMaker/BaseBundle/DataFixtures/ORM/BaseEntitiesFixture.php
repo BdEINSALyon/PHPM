@@ -52,10 +52,13 @@ class BaseEntitiesFixture implements FixtureInterface {
         $admin->setDateDeNaissance(new \DateTime());
         $admin->setDepartement("Admin");
         $admin->setTelephone("0699999999");
-        $admin->setEmail('admin@admin.com');
+        $admin->setEmail("admin@adminworld.happy");
+        $admin->setUsername("admin");
+        $admin->setPassword("admin");
+        $admin->setEnabled(true);
         $admin->setEquipe($hardEquipe);
         $admin->setStatut($hardEquipe);
-        $admin->setPrivileges(2);
+        $admin->addRole("ROLE_SUPER_ADMIN");
 
 
         $hardEquipe->setResponsable($admin);

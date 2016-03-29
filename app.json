@@ -48,6 +48,6 @@
     "heroku-postgresql"
   ],
   "scripts": {
-    "compile": "php app/console doctrine:fixtures:load"
+    "compile": "php app/console doctrine:schema:create -e prod; php app/console doctrine:fixtures:load -e prod"
   }
 }
