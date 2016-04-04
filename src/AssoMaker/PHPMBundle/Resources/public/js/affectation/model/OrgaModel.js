@@ -142,15 +142,17 @@ OrgaModel.prototype = {
 			// re-traitement de plusieurs champs
 			_dispo['debut'] = new Date(this.dataDispo[_iDispo]['debut']['date']);
 			_dispo['fin'] = new Date(this.dataDispo[_iDispo]['fin']['date']);
-			
-			// créneaux, encore un niveau
-			for (var _iCreneau in this.dataDispo[_iDispo]['creneaux']) {
-				_dispo['creneaux'][_iCreneau]['debut'] = new Date(this.dataDispo[_iDispo]['creneaux'][_iCreneau]['debut']['date']);
-				_dispo['creneaux'][_iCreneau]['fin'] = new Date(this.dataDispo[_iDispo]['creneaux'][_iCreneau]['fin']['date']);
-			
-				_dispo['creneaux'][_iCreneau]['couleur'] = pmAffectation.data.parameter.equipes[this.dataDispo[_iDispo]['creneaux'][_iCreneau]['plageHoraire']['tache']['groupeTache']['id']]['couleur'];
+
+			if (this.dataDispo[_iDispo]['creneaux'][_iCreneau]['plageHoraire']['tache']) {
+				// créneaux, encore un niveau
+				for (var _iCreneau in this.dataDispo[_iDispo]['creneaux']) {
+					_dispo['creneaux'][_iCreneau]['debut'] = new Date(this.dataDispo[_iDispo]['creneaux'][_iCreneau]['debut']['date']);
+					_dispo['creneaux'][_iCreneau]['fin'] = new Date(this.dataDispo[_iDispo]['creneaux'][_iCreneau]['fin']['date']);
+
+					_dispo['creneaux'][_iCreneau]['couleur'] = pmAffectation.data.parameter.equipes[this.dataDispo[_iDispo]['creneaux'][_iCreneau]['plageHoraire']['tache']['groupeTache']['id']]['couleur'];
+				}
 			}
-		
+
 			_dispos[_iDispo] = _dispo;
 		}
 		
