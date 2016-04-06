@@ -7,12 +7,6 @@
 
 <style>
 
-    @page :first {
-        @top-center {
-            content: "Planning Gala XIX"
-        }
-    }
-
     @page :left{
         margin:1.5cm 0.3in 1.5cm 0.3in;
     }
@@ -145,8 +139,7 @@ float:right;
                     <span class="important"><b>Quand ?</b> {{ creneau.debut | format_datetime('EEEE') }} de {{ creneau.debut | format_datetime('HH:mm') }}&nbsp;à&nbsp;{%  if (creneau.debut | format_datetime('dd'))==(creneau.fin | format_datetime('dd')) %}{{ creneau.fin | format_datetime('HH:mm') }}
                     {% else %}
                         {{ creneau.fin | format_datetime('EEEE HH:mm') }}
-                    {% endif %}</span>
-                    {{ creneau.plageHoraire.tache.responsable.telephone }}<br>
+                    {% endif %}</span><br>
                     {% if creneau.plageHoraire.creneaux| length > 1 %}
                     <b>Avec :</b> {% for c2 in creneau.plageHoraire.creneaux if  c2.id != creneau.id %}
                         {{ entitiesMacro.orga(c2.disponibilite.orga) }},&nbsp;
@@ -172,7 +165,7 @@ float:right;
         {% endfor %}
         {% endfor %}
     {% if tachesResp| length >= 1 %}
-        <div class="taches" style="page-break-before: always">
+        <div class="taches">
             <h1>Tes infos de resp de t&acirc;ches</h1>
             {% for tache in tachesResp %}
             <div id="tache-{{ tache.id }}" class="tache block">
