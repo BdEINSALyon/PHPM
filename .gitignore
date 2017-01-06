@@ -55,6 +55,7 @@ Desktop.ini
 # Others #
 #########
 .buildpath
+prod/*
 
 # Hacks #
 #########
