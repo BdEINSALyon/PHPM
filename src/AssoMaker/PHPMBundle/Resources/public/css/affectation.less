@@ -1,0 +1,450 @@
+/*
+ * Feuille de style spécifique à la vue Affectation
+ */
+
+// taille d'une heure, défini tout le layout
+@heightHeure: 40px;
+
+// ça va être très chiant, mais tous les éléments suivants doivent avoir leur taille ajustée dynamiquement
+// ce qui suit sont donc des valeurs "par défaut"
+@htmlHeight: 300px; // contenu + header ; taille par défaut
+@contentHeight: @htmlHeight - 79px; // taille du reste du contenu
+@menuHeight: 81px; // ne pas oublier la margin et le padding
+@clientHeight: @contentHeight - @menuHeight - 3px; // le restant de la page
+@joursHeight: 24 * @heightHeure;
+
+// des couleurs
+@grisPale: #EBEBEB;
+@grisMoyen: #D8D8D8;
+
+/*
+ * Mixins
+ */
+// magie qui permet de changer le modèle de boîte standart
+// le padding et la border sont inclus DANS la boîte (width x height)
+.border-box {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+// utiliser la fonction CSS3 calc
+.height-calc(@size) {
+  height: -moz-calc(@size);
+  height: -webkit-calc(@size);
+  height: calc(@size);
+}
+.width-calc(@size) {
+  width: -moz-calc(@size);
+  width: -webkit-calc(@size);
+  width: calc(@size);
+}
+// utiliser les Flex-Box
+.h-flex-box {
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  box-orient: horizontal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+}
+.center-flex-box {
+  box-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+}
+.flex (@flex: 1) {
+  width: 1px; // permet de s'assurer que flex prend la main
+   -webkit-box-flex: @flex;
+  -moz-box-flex: @flex;
+  box-flex: @flex;
+}
+
+/*
+ * Override
+ */
+html {
+  height: 100%;
+}
+body {
+	background: #fff;
+	padding: 0;
+	overflow-x: hidden; // alors là, comme des bourrins
+}
+.content {
+	padding: 0;
+	width: 100%;
+	height: @contentHeight; // 100% de ce qui est disponible
+	font-size: 14px; // on la veut un peu plus grosse qu'ailleurs
+}
+.menu_action {
+	display: none;
+}
+.footer {
+  display: none;
+}
+
+/*
+ * Override d'éléments de Twitter Bootstrap
+ */
+// ici on a juste défini un bloc à nous
+.affectation-wrapper {
+  margin: 0 -20px;
+}
+// on boque la navbar
+.navbar {
+  position: relative; // vs fixed sinon
+}
+// on fait un peu le ménage
+.page-header {
+  display: none;
+}
+.container-fluid hr {
+  display: none;
+}
+footer {
+  display: none;
+}
+// plus joli, pour les inline-label
+.label {
+  vertical-align: top;
+}
+
+/*
+ * On customize un peu les scrollbars,
+ * qu'elles soient moins intrusives et surtout
+ * qu'elles soient les mêmes sous tous les navigateurs webkits
+ */
+::-webkit-scrollbar {
+  width: 8px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar-track {
+  //display: none; // affiche pas, pas gênant
+  background: #fff;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background: rgb(180, 180, 180); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none; // on ne peut pas de boutons d'ascenseur
+}
+::-webkit-scrollbar-track-piece {           /* Fond */
+  background: transparent none;
+  border: none;
+  margin: 4px;
+  //-webkit-box-shadow: inset 1px 1px 0 0 rgb(137,131,117), inset -1px -1px 0 0 rgb(224,220,210);
+}
+
+/*
+ * Bloc collé en haut, 
+ * recevant les messages à afficher
+ */
+.message {
+  float: left;
+  position: absolute;
+  top: 0;
+  z-index: 5000;
+  left: 30%;
+  width: 40%;
+  display: none;
+}
+
+/*
+ * Menu du haut
+ */
+.menu_calendar {
+	width: 100%;
+	.h-flex-box();
+  .center-flex-box();
+	.border-box();
+	padding: 10px 0;
+	border-bottom: 1px solid #666;
+	margin: 0;
+	
+	div {
+	  //float: left;
+	  margin: 0 5px;
+	}
+}
+
+/*
+ * Client, wrapper des 3 colonnes
+ */
+.client {
+  position: relative; // force un changement de référentiel (pour la colonne de droite surtout)
+  height: @clientHeight;
+  width: 100%;
+  border-bottom: 3px solid #333;
+}
+
+
+/*
+ * Vue agenda
+ * au milieu de la fenêtre
+ */
+.calendar {
+  float: left;
+  .width-calc(~"100% - 600px"); // merci CSS3 !
+  height: 100%;
+  .border-box();
+	
+	/* barre avec les dates */
+	.titres {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 8px; // pour récupérer l'espace pour la scrollbar de jours
+    .h-flex-box();
+    .border-box();
+	  
+    .titre_date {
+      height: 100%;
+      border-right: 1px solid #333;
+      text-align: center;
+      background: @grisMoyen;
+      overflow: hidden;
+      .flex();
+      .border-box();
+      
+      &:last-of-type {
+        border-right: none;
+      }
+    } 
+	}
+  
+  /* le bloc des jours, et aussi avec les heures */
+  .jours {
+    height: @joursHeight; // sera redimensionné on-the-fly
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-left: 40px;
+    position: relative; // replace le référentiel
+    .border-box();
+    .h-flex-box();
+    
+    /* barre des heures */
+    .hours {
+      float: left;
+      position: absolute;
+      left: 0;
+      width: 40px;
+      overflow: hidden;
+      height: @heightHeure * 24 + 1;
+      border-right: 1px solid #333; // pour une raison X, pas possible de mettre la bordure sur le 1er jour
+      margin-bottom: 1px;
+      .border-box();
+      
+      .hour {
+        width: 100%;
+        height: @heightHeure;
+        line-height: @heightHeure;
+        text-align: center;
+        
+        &:nth-of-type(odd) {
+          background: @grisPale;
+        }
+        &:nth-of-type(even) {
+          background: @grisMoyen;
+        }
+      }
+    }
+  
+    /* chaque jour */
+    .jour {
+      height: @joursHeight;
+      // width setté dynamiquement
+      //float: left;
+      border-right: 1px solid #666;
+      .border-box();
+      .flex();
+            
+      /* heure */
+      .heure {
+        &:nth-of-type(odd) {
+          background: @grisPale;
+        }
+        &:nth-of-type(even) {
+          background: @grisMoyen;
+        }
+       
+        /* quart d'heure */
+        .quart_heure {
+          width: 100%;
+          height: @heightHeure / 4;
+          .h-flex-box();
+          .border-box();
+          
+          // quart d'heure disponible, clair
+          &.free {
+            background: #fff;
+            cursor: pointer;
+          }
+          // le quart d'heure sur lequel on vient de cliquer a un petit indicateur
+          &.current {
+            border-top: 2px solid OrangeRed !important;
+          }
+          
+          // l'ordre des bordures comptes, la plus épaisse dessus
+          &:nth-of-type(2n+2) {
+            border-top: 1px dashed #AAA;
+          }
+          &:nth-of-type(2n+1) {
+            border-top: 1px solid #AAA;
+          }
+          &:first-of-type {
+            border-top: 1px solid #666;
+          }
+          
+          // un creneau, bloc venant au-dessus
+          .creneau {
+            // le background est setté en fonction de la catégorie de la tache
+            color: #151515;
+            font-weight: 600;
+            opacity: 0.9;
+            float: left;
+            width: 100%;
+            padding: 5px 0;
+            text-align: center;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            .flex();
+            .border-box();
+            
+            &.affecte {
+              background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+              background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+              background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// le pop-up avec les détails d'un créneau
+.creneau_details ul {
+  list-style-type: none;
+}
+
+/*
+ * Barres latérales
+ */
+.sidebar {
+  width: 300px;
+  height: 100%;
+  overflow: hidden;
+  .border-box();
+  background: #fff;
+  
+  // bug, Chrome affiche sinon une scrollbar vide ?
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .boutons {
+    margin: 3px 0 3px 5%;
+    
+    // les boutons
+    div {
+      float: left;
+      margin: 3px;
+    }
+    
+    // pour clearer les float
+    &:after {
+       content: ".";
+       visibility: hidden;
+       display: block;
+       height: 0;
+       clear: both;
+    }
+    
+    // le menu drop-drown avec les filtres
+    .filtre {
+      padding: 3px;
+      z-index: 5000;
+      
+      li {
+        height: 30px;
+      }
+      
+      select {
+        width: 200px;
+      }
+    }
+  }
+  
+  .liste {
+    width: 100%;
+    .height-calc(~"100% - 40px"); // merci CSS3 !
+    overflow-x: hidden; // normalement il n'y en a pas
+    overflow-y: scroll;
+    border-top: 1px solid #333;
+    .border-box();
+    
+    .item {
+      border-top: 1px solid #888;
+      border-bottom: 1px solid #888;
+      width: 100%;
+      padding: 5px;
+      cursor: pointer;
+      .border-box();
+      
+     &.current {
+        background: #333;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/*
+ * Barre latérale gauche
+ * Avec la liste des orgas
+ */
+.sidebar_orga {
+  float: left;
+  border-right: 1px solid #003366;
+  
+  .boutons_orga {}
+  
+  .liste_orgas {
+    .orga {
+      
+      &.star {
+        opacity: 0.4;
+      }
+    }
+  }
+}
+
+/*
+ * Barre latérale droite
+ * Avec la liste des tâches
+ */
+.sidebar_tache {
+	float: right;
+	position: absolute; // rajouter, important pour bien se comporter lors du resize de la fenêtre
+	right: 0 !important;
+	border-left: 1px solid #003366;
+	border-right: 1px solid #fff; // que les 2 scrollbars ne soient pas collées
+	.border-box();
+	
+  .boutons_tache {}
+	
+  .liste_taches {
+    .tache {}
+  }
+}

@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Groupe de Tâches</th>
+            <th>Équipe</th>
+            <th>Responsable</th>
+            <th>Tâches</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entitiesMacro.groupeTache(entity) }}</td>
+            <td>{{ entitiesMacro.equipe(entity.equipe) }}</td>
+            <td>{{ entitiesMacro.orga(entity.responsable) }}</td>
+            <td>
+            <ul>
+           {% for tache in entity.taches %}
+            <li >{{ entitiesMacro.tache(tache) }}</li>
+            {% endfor %}
+            </ul></td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

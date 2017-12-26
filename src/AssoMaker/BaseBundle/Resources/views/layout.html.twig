@@ -1,0 +1,140 @@
+{% import "AssoMakerBaseBundle:Macros:entities.html.twig" as entitiesMacro %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% if pageTitle is defined %}{{ pageTitle }} - {% endif %}I5 PlanningMaker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        {# c'est pas très beau - on met un code 'générique' dans un block - mais à priori la seule méthode #}
+        {% block style %}
+			
+			{# Twitter Bootstrap Code #}
+				<link rel="stylesheet" media="all" href="{{ asset('vendor/twitter/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
+				<link rel="stylesheet" media="print" href="{{ asset('vendor/twitter/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
+				<style type="text/css">
+					{% block pageStyle %}
+
+				      body {
+				        padding-top: 60px;
+				        padding-bottom: 40px;
+				      }
+				      .sidebar-nav {
+				        padding: 9px 0;
+				      }
+
+				    {% endblock %}
+			    </style>
+				<link rel="stylesheet" href="{{ asset('vendor/twitter/bootstrap/css/bootstrap-responsive.min.css') }}" type="text/css" />
+				<link rel="stylesheet" href="{{ asset('vendor/fortawesome/font-awesome/css/font-awesome.min.css') }}" type="text/css" />
+                
+        	{# Rewritten CSS #}
+        	
+				{% stylesheets
+				'@AssoMakerPHPMBundle/Resources/public/css/config.less'
+				'@AssoMakerPHPMBundle/Resources/public/css/style.less'
+				'@AssoMakerPHPMBundle/Resources/public/css/tache.less'
+					filter='lessphp'
+				%}
+					<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
+				{% endstylesheets %}
+			
+
+			
+			{# Not rewritten stylesheets #}
+				{% stylesheets
+				'vendor/akzhan/jwysiwyg/jquery.wysiwyg.css'
+				'vendor/jquery/jqueryui/themes/base/minified/jquery-ui.min.css'
+				'bundles/assomakerphpm/css/images.css'
+				
+				filter='cssrewrite'
+				%}
+					<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
+				{% endstylesheets %}
+		{% endblock %}
+		
+		{# même chose pour Javascript, bien le mettre APRES à cause de LESS #}
+
+			{% javascripts
+			    '@AssoMakerPHPMBundle/Resources/public/js/lib/jquery.min.js'
+                '@AssoMakerPHPMBundle/Resources/public/js/lib/jquery-ui.min.js'
+				'vendor/twitter/bootstrap/js/bootstrap.min.js'
+				'vendor/angular/angularJS/angular.min.js'
+				
+				'@AssoMakerPHPMBundle/Resources/public/js/lib/jquery-ui-i18n.min.js'
+
+				output="js/lib.js"
+			%}
+			
+				<script src="{{ asset_url }}" type="text/javascript"></script>
+			{% endjavascripts %}
+
+        
+
+        
+        			{% javascripts
+				'vendor/trentrichardson/jquerytimepickeraddon/jquery-ui-timepicker-addon.js'
+				'vendor/sanisoft/shiftcheckbox/jquery.shiftcheckbox.js'
+				'vendor/akzhan/jwysiwyg/jquery.wysiwyg.js'
+				
+				output="js/lib2.js"
+			%}
+			
+				<script src="{{ asset_url }}" type="text/javascript"></script>
+			{% endjavascripts %}
+        
+			{% javascripts
+				
+				'@AssoMakerPHPMBundle/Resources/public/js/general.js'
+				'@AssoMakerPHPMBundle/Resources/public/js/ui.js'
+				output="js/app2.js"
+			%}
+			
+				<script src="{{ asset_url }}" type="text/javascript"></script>
+			{% endjavascripts %}
+
+        
+
+        {% endblock %}
+    </head>
+    <body>
+
+    {% include 'AssoMakerBaseBundle::navbar.html.twig' with {}  %}
+    {% block body %}
+
+    
+	        
+<div class="container-fluid">
+	{% block pageHeader %}
+    	{% if pageTitle is defined %}
+        	<div class="row-fluid">       
+                <div class="page-header">
+               	 <h1>{{ pageTitle }}</h1>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
+  	{% block content %}
+		<p>Il y aura ici le contenu</p>
+	{% endblock %}
+<hr>
+<footer>
+	&copy;
+	<a href="http://www.24heures.org">24 Heures de l'INSA</a>
+	- PHPM v1.0b2
+	@ <a href="https://github.com/lbillon/PHPM" target="_blank">Github</a><br/>
+    &copy;
+    <a href="http://bde.insa-lyon.fr">BdE INSA Lyon</a>
+    - PHPM v1.1
+    @ <a href="https://github.com/BdEINSALyon/PHPM" target="_blank">Github</a><br/>
+	<small><i>Si vous rencontrez un bug dans ce logiciel, veuillez contacter <a href="mailto:orgaif.resp@bde-insa-lyon.fr">orgaif.resp@bde-insa-lyon.fr</a></i></small>
+</footer>
+
+</div>	        
+
+	      {% endblock %}
+	</body>
+</html>
+

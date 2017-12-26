@@ -1,0 +1,76 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    #translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale: %locale%
+    session:         ~
+    translator: ~
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AssoMaker\BaseBundle\Entity\Orga
+    registration:
+        confirmation:
+            enabled:    true # change to true for required email confirmation
+
+hwi_oauth:
+  firewall_names: [main]
+  http_client:
+          verify_peer: false
+  resource_owners:
+    google:
+      type: google
+      client_id: %oauth.google.id%
+      client_secret: %oauth.google.secret%
+      scope: "email profile"
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    form:
+        resources:
+            - 'AssoMakerBaseBundle:Form:fields.html.twig'
+            
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    filters:
+        cssrewrite: ~
+        lessphp:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            apply_to: "\.less$"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        url:   %database_url%
+        charset:  utf8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        entity_managers:
+                  default:
+                      auto_mapping: true
+                      dql:
+                          datetime_functions:
+                              timediff: AssoMaker\PHPMBundle\DQL\TimeDiff
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    username:  %mailer_user%
+    password:  %mailer_password%

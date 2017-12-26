@@ -1,0 +1,181 @@
+{% extends "AssoMakerPHPMBundle::layout.html.twig"  %}
+{% set pageTitle = 'Logistique' %}
+
+
+{% block pageHeader %}
+{% endblock %}
+
+{% block content %}
+<div ng-app ng-controller="Ctrl">
+<div class="row-fluid">       
+        	<div class="page-header">
+                    <h1>Logistique <a ng-click="showHelp=!showHelp"><i class="icon-question-sign" ></i> </a></h1>
+
+                    
+	        </div>
+</div>
+<div class="row-fluid" ng-show="showHelp">       
+        	<div class="span12 alert alert-info">
+                    <h5>Instructions</h5>
+                    Les orgas logistiques sont seuls à pouvoir changer le champ "Check Log"<br>
+                    Si ce champ commence par non, le matériel n'a pas été checké, et la ligne s'affiche en rouge<br>
+                    En cas de modification d'une fiche tâche affectant une ligne, le Check Log revient à non, et comprend entre parenthèses l'ancienne valeur.<br>
+                    <b>Pour la log : </b> Cliquer sur le bouton <i class="icon-ok"></i> pour valider les modifications.
+	            
+	        </div>
+</div>
+<script type="text/javascript">
+
+
+    function Ctrl($scope,$http) {
+        
+        
+    $scope.setRidm = function($id) {
+            $scope.ridm = $id;
+        };
+        
+        $scope.search = {};
+        $scope.ridm=0;
+    
+    $scope.successMaj = [];
+    $scope.successTacheMaj = [];
+    
+    $scope.showRaf=false;
+    
+
+    $scope.predicate = 'groupeTache.animLiee.id';
+
+$scope.taches={{taches |raw}};
+$scope.materiel={{materiel|raw}};
+        
+                        {% if is_granted('ROLE_LOG') %}
+                $scope.isLog = true;{% endif %}
+                
+                            $scope.changeCom = function($id,$com) {
+
+                var data = {'id': $id, 'com':$com};
+                
+        $http.post('{{path('phpm_besoinmateriel_changecom')}}', JSON.stringify(data)).success(function(data) {
+$scope.successMaj[$id] = true;
+                }).error(function(data) {
+$scope.successMaj[$id] = false;
+                });
+            };
+            
+          $scope.changeTacheCom = function($id,$com) {
+
+                var data = {'id': $id, 'com':$com};
+                
+        $http.post('{{path('phpm_tache_changecom')}}', JSON.stringify(data)).success(function(data) {
+$scope.successTacheMaj[$id] = true;
+                }).error(function(data) {
+$scope.successTacheMaj[$id] = false;
+                });
+            };
+            
+            $scope.non = function($str) {
+            if($str==null){
+            return false;
+        }
+            return $str.substring(0, 3) === 'non';
+            }
+		
+            }
+    </script>
+
+    <div class="row-fluid" >
+
+                {% raw %}
+<input type="text" class="input-medium search-query" ng-model="search.$">
+
+<div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Matériel<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="setRidm(0)"><b>Tous</b></a> </li>
+   <li ng-repeat="m in materiel"><a ng-click="setRidm(m.id)">{{m.nom}}</a> </li>
+                </ul>
+              </div>
+
+                    
+                        <a ng-click="showRaf=!showRaf" ng-class="{active: showRaf}" class="btn btn-info">Afficher RAF</a>
+                    
+	<table class="table table-condensed">
+        <thead>
+        	<tr>
+	        	<th>Tâche</th>
+	            <th>Autre Matos</th>
+                    <th>Check Log</th>
+            </tr>
+        </thead>
+
+        <tbody  ng-repeat="t in taches | orderBy:predicate | filter:search" ng-show="((t.commentaireLog!='raf')||showRaf)">
+<tr class="info"><td colspan="3"><h5><a href="{% endraw %}{{path("anim_animation_index")}}{% raw %}/../{{t.groupeTache.animLiee.id}}/edit" class="statut{{ t.groupeTache.animLiee.statut }}" target="_blank">{{t.groupeTache.animLiee.nom}}</a> => <a href="{% endraw %}{{path("tache")}}{% raw %}/../{{t.id}}/edit" class="statut{{ t.statut }}" target="_blank">{{t.groupeTache.nom}} {{t.nom}}</a><small>({{t.groupeTache.equipe.nom}})</small></h5> 
+
+                    <ul>
+                    <li ng-repeat="p in t.plagesHoraire">{{p.debut}} &rarr; {{p.fin}}</li>
+                    </ul>
+                </td>
+        </tr>
+    <td ROWSPAN="100" style="width: 30em;"  >
+                <input type="text" ng-change="successTacheMaj[t.id]=false" class="input-large danger" ng-model="t.commentaireLog">
+    <button class="btn"type="submit"  ng-click="changeTacheCom(t.id,t.commentaireLog)" ng-class="{false: 'btn-warning', true: 'btn-success'}[successTacheMaj[t.id]]" ><i class="icon-ok"></i></button>
+<button class="btn btn-danger" type="submit"  ng-click="changeTacheCom(t.id,'raf');t.commentaireLog='raf'" ><i class="icon-remove"></i> RAF</button><br>
+        
+        <div class="alert" ng-class="{false: 'alert-success', true: 'alert-error'}[non(t.commentaireLog)]"><b>Matériel supplémentaire : </b><br>{{t.materielSupplementaire}}</div>
+
+    
+    
+    </td>            
+            <tr ng-repeat="b in t.besoinsMateriel" ng-class="{false: '', true: 'error'}[non(b.commentaireLog)]" ng-show="((b.commentaireLog!='raf')||showRaf)&&((ridm==0)||(b.materiel.id==ridm))">
+<td>{{b.quantite}} x {{b.materiel.nom}}</td>   
+
+<td ng-show="!isLog">
+    
+    
+{{b.commentaireLog}}
+
+</td> 
+<td ng-show="isLog">
+
+<form class="form-search ">
+  <input type="text" ng-change="successMaj[b.id]=false" class="input-large danger" ng-model="b.commentaireLog">
+<button class="btn"type="submit"  ng-click="changeCom(b.id,b.commentaireLog)" ng-class="{false: 'btn-warning', true: 'btn-success'}[successMaj[b.id]]" ><i class="icon-ok"></i></button>
+<button class="btn btn-danger" type="submit"  ng-click="changeCom(b.id,'raf');b.commentaireLog='raf'" ><i class="icon-remove"></i> RAF</button>
+</form>
+
+</td> 
+
+                
+                
+            </tr>
+	
+		
+
+            
+
+                    
+        </tbody>
+        {% endraw %}
+        
+                    {#
+		{{ t.groupeTache.nom }} / {{ entitiesMacro.tache(t) }}</td>
+                <td>{{t.groupeTache.equipe}}</td>
+            	<td><ul>{% for ph in t.plagesHoraire %}
+                    
+                        <li>{{ ph.debut | format_datetime('EEEE dd MMM Y HH:mm') }} </li>{% endfor %}</ul></td>
+                        <td><ul>{% for ph in t.plagesHoraire %}
+                    
+                        <li>{{ ph.fin | format_datetime('EEEE dd MMM Y HH:mm') }} </li>{% endfor %}</ul></td>
+                <td>{{bm.materiel}}</td>
+                <td>{{bm.quantite}}</td>
+                <td>
+                    <input ng-model="coms[{{bm.id}}]" type="text" placeholder="">
+#}
+    </table>
+
+
+
+</div>
+</div>
+
+{% endblock %}

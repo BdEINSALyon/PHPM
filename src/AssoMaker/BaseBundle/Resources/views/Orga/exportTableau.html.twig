@@ -1,0 +1,54 @@
+{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+{% set pageTitle = 'Liste des Orgas' %}
+
+{% block body %}
+<div class="row-fluid" style="text-align:center">
+   <table>
+   	<thead>
+   	  <tr>
+   		<th>id</th>
+   		<th>Nom</th>
+   		<th>Prénom</th>
+   		<th>Surnom</th>
+   		<th>Téléphone</th>
+   		<th>Mail</th>
+   		<th>Date de Naissance</th>
+   		<th>Permis</th>
+   		<th>Com'</th>
+   		<th>Année Étude</th>
+   		<th>Départ'</th>
+   		<th>Commentaire</th>
+   		<th>Amis</th>
+   		<th>Compétences</th>    
+   		<th>Créneaux</th>	
+   		<th>Charisme</th>	
+   	  </tr>
+   	</thead>
+   	<tbody>
+   		{% for orga in orgas %}
+   		<tr>
+   			<td>{{ orga.id }}</td>
+   			<td>{{ orga.nom }}</td>
+   			<td>{{ orga.prenom }}</td>
+   			<td>{{ orga.surnom }}</td>
+   			<td>{{ orga.telephone | telephone}}</td>
+   			<td>{{ orga.email }}</td>
+   			<td>{% if orga.dateDeNaissance %}{{ orga.dateDeNaissance|format_date('dd MMM Y') }}{% endif%}</td>
+   			<td>{% if orga.datePermis %}{{ orga.datePermis|format_date('dd MMM Y') }}{% endif%}</td>
+   			<td>{{ orga.equipe.nom }}</td>
+   			<td>{{ orga.anneeEtudes }}</td>
+   			<td>{{ orga.departement }}</td>
+   			<td>{{ orga.commentaire }}</td>
+   			<td>{{ orga.amis }}</td>
+   			<td>{% for c in orga.competences %}{{ c }},{% endfor %}</td>
+   			<td>{% for di in orga.disponibilitesInscription %}{{ di.id }},{% endfor %}</td>
+   			<td>{{ orga.charisme }}</td>   			   			
+   		</tr>
+   		{% endfor %}
+   	</tbody>
+</table>
+</div>
+   
+{% endblock %}
+
+

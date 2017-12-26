@@ -1,0 +1,83 @@
+{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+{% set pageTitle = "Inscription" %}
+
+{% block content %}
+    {% block body %}
+        <script>
+            function unloadMess() {
+                mess = "Attention, tes changements n'ont pas été enregistrés";
+                return mess;
+            }
+            function setBunload(on) {
+                window.onbeforeunload = (on) ? unloadMess : null;
+            }
+            setBunload(true);
+        </script>
+        <form class="form-horizontal" onsubmit="javascript:setBunload(false);" action="{{ path('register_oauth') }}" method="post" {{ form_enctype(form) }}>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <h1>Inscription Orga - {{ manifestation_nom }}</h1>
+                    <hr>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span4 well">
+                        <fieldset>
+                            <legend>Renseignements Obligatoires</legend>
+
+                            {{ form_row(form.prenom) }}
+                            {{ form_row(form.nom) }}
+                            {{ form_row(form.email,{"help":"Adresse mail INSA de préférence."}) }}
+                            {{ form_row(form.telephone,{"help":"Sans séparateurs : 0647682792"}) }}
+                            {{ form_row(form.dateDeNaissance) }}
+
+                            {% if form.competences is not empty %}
+                            <legend>Tu sais </legend>
+                            <div class="control-group {% if form_errors(form.competences)|length > 0 %}error{% endif %}">
+                                {{ form_errors(form.competences) }}
+                                {% for comp in form.competences %}
+                                    <label class="checkbox">
+                                        {{ form_widget(comp) }} {{ comp.vars.label }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </fieldset>
+
+                    </div>
+                    <div class="span4 well">
+                        <fieldset>
+                            <legend>Renseignements Supplémentaires</legend>
+                            {{ form_row(form.surnom) }}
+                            {{ form_row(form.anneeEtudes) }}
+                            {{ form_row(form.departement) }}
+                            {{ form_row(form.groupePC) }}
+                            {{ form_row(form.datePermis) }}
+                            {{ form_row(form.celibataire) }}
+                        </fieldset>
+                    </div>
+                    <div class="span4 well">
+                        <fieldset>
+                            <legend>Noms des potes avec qui tu veux bosser</legend>
+                            {{ form_widget(form.amis) }}
+
+                        </fieldset>
+                        <fieldset>
+                            <legend>Des commentaires ?</legend>
+                            {{ form_widget(form.commentaire) }}
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="form-fluid">
+                    <div class="form-actions ">
+                        <button class="btn btn-success pull-right" type="submit">Continuer »</button>
+                    </div>
+                </div>
+
+                {{ form_widget(form._token) }}
+            </div>
+        </form>
+
+    {% endblock %}
+{% endblock %}

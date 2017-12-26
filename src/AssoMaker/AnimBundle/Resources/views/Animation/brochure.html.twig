@@ -1,0 +1,14 @@
+{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+{% set pageTitle = '' %}
+
+{% block body %}
+
+
+
+{% for a in animations %}
+<h1>{{a.nom}}  ({{a.lieu}})</h1>
+{%for h in a.horaires%}{{h.jour}} : {{h.debut}} &rarr; {{h.fin}}{%if not loop.last%}, {%endif%}{%endfor%}
+{{a.description | raw}}
+{%endfor%}
+
+{% endblock %}

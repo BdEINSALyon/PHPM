@@ -1,0 +1,55 @@
+{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+{% set pageTitle = 'Trombinoscope '~manifestation_nom  %}
+{% use "AssoMakerPHPMBundle::index.html.twig" %}
+
+{% block content %}
+<div class="row-fluid">
+	<div class="btn-toolbar">
+	       <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Exporter
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+              <li><a href="{{ path("orga_export_csv") }}">Format .csv (Google Agenda)</a></li>
+              <li><a href="{{ path("orga_export_tableau") }}" target="_blank">Tableau</a></li>
+    
+              </ul>
+            </div>
+          </div>
+
+	{% for equipe in entities %}
+		<div class="row-fluid">
+			<h3>{{ equipe.nom }}</h3>
+		</div>
+		{% for key,orga in equipe.orgas %}
+		{%  if loop.index0 % 4 == 0 %}
+		<ul class="thumbnails">
+		{%  endif %}
+			<li class="span3">
+                <div class="thumbnail">
+                 {% if orga.profilePictureSet == 1 %}
+                     <img src="{{ entitiesMacro.orgaProfilePictureLink(orga.id) }}" class="img-polaroid" style="width:60%"/>
+                 {% endif %}
+                  <h4>{{ entitiesMacro.orga(orga) }}</h4>
+                  <p>
+                      <i class="icon-envelope"></i> <a href= "mailto:{{ orga.email }}">{{ orga.email }}</a><br/>
+                      <i class="icon-phone"></i> {{ orga.telephone |telephone}}
+                  </p>
+                </div>
+             </li>
+        {%  if loop.index0 % 4 == 3 %}
+		</ul>
+		{%  endif %}
+
+		{% endfor %}
+	
+	{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block actions %}
+{% endblock %}
+
+

@@ -1,0 +1,25 @@
+{% if entities %}
+
+<table class="table">
+    <thead>
+        <tr>
+        	<th>Groupe</th>
+            <th>Tâche</th>            
+            <th>Équipe</th>
+            <th>Responsable</th>
+            <th>Dernier Commentaire</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        	<td>{{ entitiesMacro.groupeTache(entity.groupeTache) }}</td>
+            <td>{{ entitiesMacro.tache(entity) }}</td>            
+            <td>{{ entitiesMacro.equipe(entity.groupeTache.equipe) }}</td>
+            <td>{{ entitiesMacro.orga(entity.responsable) }}</td>
+            <td>{{ entitiesMacro.tacheCom(entity) }}</td>
+            
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}

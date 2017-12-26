@@ -1,0 +1,71 @@
+# Symfony2 specific #
+#####################
+
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+web/vendor/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+*.bat
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+.metadata
+
+# Perso #
+#########
+~*
+*~
+
+# IDE-specific #
+################
+.project
+.settings/*
+.idea/*
+.buildpath
+
+# Composer #
+############
+#composer.phar
+#composer.lock
+
+# Others #
+#########
+.buildpath
+
+# Hacks #
+#########
+src/AssoMaker/BaseBundle/Controller/TestController.php
+
+# Deprecated? #
+###############
+/web/css
+/web/js
+/web/images
+/web/lib/*
+/web/up
+/app/bootstrap*
+/bundles/

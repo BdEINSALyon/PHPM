@@ -1,0 +1,39 @@
+{% extends "AssoMakerBaseBundle::layout.html.twig"  %}
+
+{% set pageTitle = "Nouveau Contact" %}
+
+{% block content %}
+	<form class="form-horizontal" action="{{ path('sponso_avancement_new', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+		<div class="row-fluid">
+			<div class="span4">
+				<fieldset>
+					    <div class="row-fluid">
+							    
+							    {{ form_row(form.projet) }}
+							    {{ form_row(form.responsable) }}
+                                {{ form_row(form.entreprise) }}
+								{{ form_row(form.nom) }}
+								{{ form_row(form.poste) }}
+								{{ form_row(form.email) }}
+								{{ form_row(form.telephone) }}
+								{{ form_row(form.adresse) }}
+								{{ form_widget(form) }}
+
+							    
+						</div>       			
+	         			
+				</fieldset>
+			</div>
+			
+	    </div>
+	   
+
+	
+	{{ form_widget(form._token) }}
+	<div class="form-actions">
+	    <div class="btn-toolbar">
+	        <button class="btn btn-primary" type="submit">Enregistrer</button>
+		</div>
+	</div>
+	</form>
+{% endblock %}

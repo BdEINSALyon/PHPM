@@ -1,0 +1,83 @@
+{% macro orga(entity) %}
+{{ entity.prenom }} {{ entity.nom }}{% if entity.surnom  %} ({{ entity.surnom }}){% endif %}
+{% endmacro %}
+
+{% macro orgaPrivileges(privileges) %}
+{% spaceless %}
+{% if(privileges == 5) %}<span class="label label-important">Super Admin</span>{% endif %}
+{% if(privileges == 4) %}<span class="label label-important">Sécu</span>{% endif %}
+{% if(privileges == 3) %}<span class="label label-important">Logistique</span>{% endif %}
+{% if(privileges == 2) %}<span class="label label-important">Humain</span>{% endif %}
+{% if(privileges == 1) %}<span class="label label-info">Orga</span>{% endif %}
+{% if(privileges == 0) %}<span class="label">Visiteur</span>{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro orgaEmail(email) %}
+<a href="mailto:{{ email }}">{{ email }}</a>
+{% endmacro %}
+
+{% macro orgaProfilePictureLink(id) %}
+    {{ asset( 'up/profilePictures/'~id~'.jpg' ) }}
+{% endmacro %}
+
+{% macro groupeTache(entity) %}
+ <a href="{{ path('groupetache_edit', { 'id': entity.id }) }}">{{ entity.id }}- {{ entity.nom }}</a>
+{% endmacro %}
+
+{% macro tache(tache) %}
+<a class="statut{{  tache.statut }}" href="{{ path('tache_edit', { 'id': tache.id }) }}">{{ tache.id }}- {{ tache.nom }}</a>
+{% endmacro %}
+
+{% macro equipe(equipe) %}
+<span style="color: {{ equipe.couleur }}">{{ equipe.nom }}</span>
+{% endmacro %}
+
+{% macro projet(projet) %}
+<a href="{{ path('sponso_projet_edit', { 'id': projet.id }) }}">{{ projet.nom }}</a>
+{% endmacro %}
+
+{% macro iconCom(com) %}
+{% if com.type == -1 %}<i class="icon-trash"></i>{% endif %}
+{% if com.type == 1 %}<i class="icon-eye-open"></i>{% endif %}
+{% if com.type == 2 %}<i class="icon-ok"></i>{% endif %}
+{% if com.type in [3,8,9,10] %}<i class="icon-remove"></i>{% endif %}
+{% if com.type == 4 %}<i class="icon-share-alt"></i>{% endif %}
+{% if com.type == 5 %}<i class="icon-wrench"></i>{% endif %}
+{% if com.type == 6 %}<i class="icon-bullhorn"></i>{% endif %}
+{% if com.type == 7 %}<i class="icon-user"></i>{% endif %}
+
+{% if com.type == 11 %}<i class="icon-undo"></i>{% endif %}
+{% endmacro %}
+
+{% macro supTextCom(com) %}
+{% if com.type != 0 %}
+<i class="icon-arrow-right"></i>
+<b>
+{% if com.type == -1 %}Fiche supprimée{% endif %}
+{% if com.type == 1 %}Fiche soumise à validation{% endif %}
+{% if com.type == 2 %}Fiche validée{% endif %}
+{% if com.type == 3 %}Fiche rejetée{% endif %}
+{% if com.type == 4 %}Fiche restaurée{% endif %}
+{% if com.type == 5 %}Fiche vérifiée par la logistique{% endif %}
+{% if com.type == 6 %}Fiche vérifiée par la sécurité{% endif %}
+{% if com.type == 7 %}Fiche vérifiée par l'humain{% endif %}
+{% if com.type == 8 %}Fiche rejetée par la logistique{% endif %}
+{% if com.type == 9 %}Fiche rejetée par la sécurité{% endif %}
+{% if com.type == 10 %}Fiche rejetée par l'humain{% endif %}
+{% if com.type == 11 %}Demande de validation annulée{% endif %}
+</b>
+{% endif %}
+{% endmacro %}
+
+{% macro tacheCom(tache) %}
+{% if tache.commentaires.count >0 %}
+<span class="lcom"><span class="com_auteur">
+    {{tache.commentaires.last.auteur}}
+</span>
+<span class="com_heure"> 
+    {{ tache.commentaires.last.heure|format_datetime('EEEE dd MMM HH:mm') }} : </span>
+    {{  _self.iconCom(tache.commentaires.last) }} {{ tache.commentaires.last.texte }} {{  _self.supTextCom(tache.commentaires.last) }}</span>
+{% endif %}
+{% endmacro %}
+
