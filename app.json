@@ -10,7 +10,8 @@
   "env": {
     "SECRET": {
       "description": "Secret pour générer des messages secrets :-D.",
-      "generator": "secret"
+      "generator": "secret",
+      "value": "kesQueC ? "
     },
     "MAIL_HOST" : {
       "description": "Serveur d'envoie d'email.",
