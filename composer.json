@@ -98,7 +98,7 @@
         "name": "akzhan/jwysiwyg",
         "version": "0.97",
         "dist": {
-          "url": "https://codeload.github.com/jwysiwyg/jwysiwyg/zip/0.97",
+          "url": "https://github.com/jwysiwyg/jwysiwyg/zipball/0.97",
           "type": "zip"
         }
       }
