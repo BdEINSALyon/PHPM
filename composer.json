@@ -36,6 +36,7 @@
     "sanisoft/shiftcheckbox": "1.0",
     "angular/angularJS": "1.0.4",
     "fortawesome/font-awesome": "4.2.*",
+    "leafo/lessphp": "0.4.0",
     "angular/angularUI": "0.4.0",
     "friendsofsymfony/user-bundle": "v1.3.5",
     "hwi/oauth-bundle": "0.4.*@dev",

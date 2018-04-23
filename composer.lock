@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da959c22ba47fc3c634befcb003ea972",
+    "content-hash": "868374c9726516a48019ba46e9e31648",
     "packages": [
         {
             "name": "akzhan/jwysiwyg",
@@ -1865,28 +1865,22 @@
         },
         {
             "name": "leafo/lessphp",
-            "version": "dev-master",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/lessphp.git",
-                "reference": "e701984d5d488599441623d3d56bd42103019ab6"
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafo/lessphp/zipball/e701984d5d488599441623d3d56bd42103019ab6",
-                "reference": "e701984d5d488599441623d3d56bd42103019ab6",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/51f3f06f0fe78a722dabfd14578444bdd078d9de",
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de",
                 "shasum": ""
             },
-            "require-dev": {
-                "phpunit/phpunit": "~4.3"
-            },
-            "bin": [
-                "plessc"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.4.x-dev"
+                    "dev-master": "0.3-dev"
                 }
             },
             "autoload": {
@@ -1908,7 +1902,7 @@
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
-            "time": "2014-12-29T20:45:53+00:00"
+            "time": "2013-08-09T17:09:19+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3035,7 +3029,6 @@
     "stability-flags": {
         "symfony/debug": 20,
         "fp/lightopenid": 20,
-        "leafo/lessphp": 20,
         "hwi/oauth-bundle": 20
     },
     "prefer-stable": false,
