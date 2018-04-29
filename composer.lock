@@ -45,12 +45,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "020b87ee07aead34a13b29a5daf2c05f0c1b8e7b"
+                "reference": "7574f965b6c1233d68eee0b1a8a54cf383e70124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/020b87ee07aead34a13b29a5daf2c05f0c1b8e7b",
-                "reference": "020b87ee07aead34a13b29a5daf2c05f0c1b8e7b",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/7574f965b6c1233d68eee0b1a8a54cf383e70124",
+                "reference": "7574f965b6c1233d68eee0b1a8a54cf383e70124",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +105,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2018-04-16T04:30:45+00:00"
+            "time": "2018-04-28T02:24:15+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -113,12 +113,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "faafa89c51e398b739958cdbc03fc47fda653d54"
+                "reference": "4f2848f98aae24a013d9aa89fc955acf1406f0a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/faafa89c51e398b739958cdbc03fc47fda653d54",
-                "reference": "faafa89c51e398b739958cdbc03fc47fda653d54",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/4f2848f98aae24a013d9aa89fc955acf1406f0a7",
+                "reference": "4f2848f98aae24a013d9aa89fc955acf1406f0a7",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2018-04-12T11:17:53+00:00"
+            "time": "2018-04-27T19:45:51+00:00"
         },
         {
             "name": "doctrine/collections",
