@@ -1,11 +1,11 @@
 version: '2'
 services:
     db:
-        image: mysql
+        image: mysql:5
         ports:
             - "3306:3306"
         environment:
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
             MYSQL_DATABASE: symfony
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony

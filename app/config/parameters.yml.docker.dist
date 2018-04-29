@@ -1,0 +1,13 @@
+parameters:
+    database_url: "mysql://root@db/symfony"
+    mailer_transport:    smtp
+    mailer_host:    ~
+    mailer_user:    ~
+    mailer_password:    ~
+    locale:    "fr"
+    secret:    "ThisIsNotSoSecretChangeMe"
+    admin_email:    "admin@example.com"
+    oauth.google.id: "Get one."
+    oauth.google.secret: "ThisIsNotSoSecret"
+    android.api.key: "Get one."
+    
