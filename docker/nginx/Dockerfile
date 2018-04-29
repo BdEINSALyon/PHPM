@@ -1,16 +1,20 @@
-FROM alpine:3.4
+FROM debian:jessie
 
-MAINTAINER Philippe Vienne <philippegeek@gmail.com>
+MAINTAINER BdE INSA Lyon - Équipe OrgaIF <orgaif.equipe@bde-insa-lyon.fr>
 
-RUN apk add --update nginx
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get autoremove --purge -y && apt-get autoclean -y
+RUN apt-get install -y \
+    nginx
 
 ADD nginx.conf /etc/nginx/
-ADD symfony.conf /etc/nginx/conf.d/
+ADD symfony.conf /etc/nginx/sites-available/
 
-RUN echo "upstream php-upstream { server php:9001; }" > /etc/nginx/conf.d/upstream.conf
+RUN ln -s /etc/nginx/sites-available/symfony.conf /etc/nginx/sites-enabled/symfony
+RUN rm /etc/nginx/sites-enabled/default
 
-RUN adduser -D -g '' -G www-data www-data
+RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
+
+RUN usermod -u 1000 www-data
 
 CMD ["nginx"]
 

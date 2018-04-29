@@ -1,25 +1,45 @@
-FROM alpine:3.4
+FROM php:5-fpm
 
-MAINTAINER Philippe Vienne <PhilippeGeek@gmail.com>
+MAINTAINER BdE INSA Lyon - Équipe OrgaIF <orgaif.equipe@bde-insa-lyon.fr>
 
-RUN apk add --update git
-RUN apk add --update php5-fpm php5-apcu php5-bcmath php5-ctype php5-curl php5-dom \
-    php5-gd php5-iconv php5-imagick php5-json php5-intl php5-mcrypt php5-mysql \
-    php5-opcache php5-openssl php5-pdo php5-pdo_mysql php5-mysqli php5-xml \
-    php5-zlib php5-phar
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get autoremove --purge -y && apt-get autoclean -y
+RUN apt-get install -y \
+    openssl \
+    git \
+    unzip \
+    zlib1g-dev libicu-dev g++
 
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
 
-ADD ./docker/php/symfony.ini /etc/php5/fpm/conf.d/
-ADD ./docker/php/symfony.ini /etc/php5/cli/conf.d/
-ADD ./docker/php/symfony.pool.conf /etc/php5/fpm.d/
+# Set timezone
+RUN ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime && echo Europe/Paris > /etc/timezone
+RUN printf '[PHP]\ndate.timezone = "%s"\n', Europe/Paris > /usr/local/etc/php/conf.d/tzone.ini
+RUN "date"
+
+# Type docker-php-ext-install to see available extensions
+RUN docker-php-ext-install pdo pdo_mysql bcmath intl
+
+
+# install xdebug
+RUN pecl install xdebug-2.3.3 apcu-4.0.11
+RUN docker-php-ext-enable xdebug apcu
+RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.idekey=\"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+
+RUN echo 'alias sf="php app/console"' >> ~/.bashrc
+RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
 
 WORKDIR /var/www/symfony
+#php vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
 COPY ./composer.phar .
 COPY ./composer.json .
 RUN php -d memory_limit=-1 ./composer.phar install
 COPY . .
-
-CMD ["php-fpm", "-F"]
-
-EXPOSE 9000
