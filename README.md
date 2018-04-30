@@ -8,6 +8,7 @@ To deploy on Dokku (deprecated):
 To deploy with Docker:
 - Create the parameters.yml file from parameters.yml.docker.dist
 - Build the docker-compose
+- Fix permissions: `$ sudo chmod -R 777 prod/`
 - Enter in php container: `$ docker-compose exec php bash`
 - Update database: `# sf doctrine:schema:update --force`
 - Load fixtures: `# sf doctrine:fixtures:load`
