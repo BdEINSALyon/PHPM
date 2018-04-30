@@ -57,7 +57,7 @@ class BaseEntitiesFixture implements FixtureInterface {
         $admin->setPassword("admin");
         $admin->setEnabled(true);
         $admin->setEquipe($hardEquipe);
-        $admin->setStatut($hardEquipe);
+        $admin->setStatut(1);
         $admin->addRole("ROLE_SUPER_ADMIN");
 
 
