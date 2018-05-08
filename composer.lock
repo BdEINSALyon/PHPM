@@ -55,7 +55,7 @@
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": "^7.1"
+                "php": "^7.2"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
@@ -2755,6 +2755,61 @@
             "time": "2014-07-21T00:36:06+00:00"
         },
         {
+            "name": "symfony/polyfill-ctype",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-04-30T19:57:29+00:00"
+        },
+        {
             "name": "symfony/swiftmailer-bundle",
             "version": "v2.3.12",
             "source": {
@@ -2993,16 +3048,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "4f57c6eab843e2b4a05366b4ffe62e610c80cfbc"
+                "reference": "ed02b30a17a4d5e29b7a965c7c5fdc85f9be7bc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4f57c6eab843e2b4a05366b4ffe62e610c80cfbc",
-                "reference": "4f57c6eab843e2b4a05366b4ffe62e610c80cfbc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ed02b30a17a4d5e29b7a965c7c5fdc85f9be7bc0",
+                "reference": "ed02b30a17a4d5e29b7a965c7c5fdc85f9be7bc0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "psr/container": "^1.0",
@@ -3050,7 +3106,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-04-20T06:05:14+00:00"
+            "time": "2018-05-02T15:04:18+00:00"
         },
         {
             "name": "twitter/bootstrap",
