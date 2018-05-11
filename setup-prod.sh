@@ -1,3 +1,3 @@
 #!/bin/bash
-sf doctrine:schema:update --force
+php /var/www/symfony/app/console doctrine:schema:update --force
 cp -rf * /assets/
