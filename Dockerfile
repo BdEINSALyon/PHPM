@@ -50,5 +50,5 @@ RUN php -d memory_limit=-1 ./composer.phar install
 COPY . .
 RUN php vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
 RUN chmod -R 777 app
-RUN chmod +x setup-prod.sh
-CMD ["setup-prod.sh"]
+RUN chmod +x /var/www/symfony/setup-prod.sh
+CMD ["/var/www/symfony/setup-prod.sh"]
