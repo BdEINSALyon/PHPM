@@ -51,4 +51,4 @@ COPY . .
 RUN php vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
 RUN chmod -R 777 app
 RUN chmod +x /var/www/symfony/setup-prod.sh
-CMD ["/var/www/symfony/setup-prod.sh", ";", "/usr/local/sbin/php-fpm"]
+CMD ["/var/www/symfony/setup-prod.sh"]
