@@ -6,6 +6,7 @@ To deploy on Dokku (deprecated):
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 To deploy with Docker:
+- Comment the 3 last lines in **Dockerfile** (lines only for Rancher CI/CD)
 - Create the parameters.yml file from parameters.yml.docker.dist
 - Build the docker-compose
 - Fix permissions: `$ sudo chmod -R 777 prod/`
