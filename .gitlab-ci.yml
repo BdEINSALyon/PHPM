@@ -20,4 +20,4 @@ deploy-test:
   only:
     - Docker-test
   script:
-    - upgrade --environment "Production" --new-image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" --start-before-stopping --stack PHPM-preprod --service PHPM-preprod-php
+    - upgrade --environment "Production" --new-image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" --stack PHPM-preprod --service PHPM-preprod-php
