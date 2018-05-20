@@ -1,0 +1,27 @@
+version: '2'
+services:
+  PHPM-preprod-db:
+    image: mysql:5
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: '1'
+      MYSQL_DATABASE: symfony
+      MYSQL_PASSWORD: symfony
+      MYSQL_USER: symfony
+    volumes:
+    - PHPM-preprod-database:/var/lib/mysql
+    ports:
+    - 3306:3306/tcp
+  PHPM-preprod-php:
+    image: r.bde-insa-lyon.fr/bdeinsalyon/phpm:docker-test
+    volumes:
+    - PHPM-preprod-symfony:/assets
+    - PHPM-preprod-cache:/var/www/symfony/app/cache
+    - PHPM-preprod-logs:/var/www/symfony/app/logs
+    links:
+    - PHPM-preprod-db:db
+  PHPM-preprod-nginx:
+    image: r.bde-insa-lyon.fr/bdeinsalyon/phpm-nginx:latest
+    volumes:
+    - PHPM-preprod-symfony:/var/www/symfony
+    links:
+    - PHPM-preprod-php:php
